@@ -56,12 +56,11 @@ namespace InboxCrawler
 				using (StreamWriter writer = new StreamWriter (cacheName)) {
 					serializer.Serialize (writer, allMessages);
 				}
-			}
-			else {
+			} else {
 				using (StreamReader reader = new StreamReader (cacheName))
-					using (JsonReader jReader = new JsonTextReader (reader)) {
-						allMessages = serializer.Deserialize<Message[]> (jReader);
-					}
+				using (JsonReader jReader = new JsonTextReader (reader)) {
+					allMessages = serializer.Deserialize<Message[]> (jReader);
+				}
 			}
 			var topOffenders = allMessages.GroupBy (m => m.Sender.EmailAddress.Address).Select (g => new {
 				Key = g.Key,
@@ -73,31 +72,29 @@ namespace InboxCrawler
 			}
 		}
 
-		static IEnumerable<Folder> EnumerateFolder(string folderUrl)
+		static IEnumerable<Folder> EnumerateFolder (string folderUrl)
 		{
 			foreach (var folder in Enumerate<Folder>(folderUrl)) {
 				if (folder.ChildFolderCount > 0) {
 					Debug.WriteLine ("Expanding {0}", folder.ID);
-					folder.ChildFolders = EnumerateFolder (folder.ID + "/ChildFolders").ToArray();
+					folder.ChildFolders = EnumerateFolder (folder.ID + "/ChildFolders").ToArray ();
 				}
 
 				yield return folder;
 			}
 		}
 
-		static IEnumerable<TObject> Enumerate<TObject>(string folderUrl)
+		static IEnumerable<TObject> Enumerate<TObject> (string folderUrl)
 		{
 			Queue<string> queue = new Queue<string> ();
 			queue.Enqueue (folderUrl);
 
-			while (queue.Count > 0) 
-			{
+			while (queue.Count > 0) {
 				var uri = queue.Dequeue ();
 				Debug.WriteLine (uri);
-				var response = GetJsonObject<PageableResponse<TObject>> (new Uri(uri), GetCredentials()); 
+				var response = GetJsonObject<PageableResponse<TObject>> (new Uri (uri), GetCredentials ()); 
 		
-				foreach (var item in response.Items) 
-				{
+				foreach (var item in response.Items) {
 					yield return item;
 				}
 
@@ -107,7 +104,7 @@ namespace InboxCrawler
 			}
 		}
 
-		static NetworkCredential GetCredentials()
+		static NetworkCredential GetCredentials ()
 		{
 			NetworkCredential credentials = new NetworkCredential ();
 			credentials.UserName = "stephbu@microsoft.com";
@@ -122,51 +119,51 @@ namespace InboxCrawler
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create (url);
 			req.Credentials = creds;
 			using (var response = req.GetResponse ())
-				using (var responseStream = response.GetResponseStream ())
-					using (var streamReader = new StreamReader (responseStream))
-						using (var jsonReader = new JsonTextReader (streamReader)) {
+			using (var responseStream = response.GetResponseStream ())
+			using (var streamReader = new StreamReader (responseStream))
+			using (var jsonReader = new JsonTextReader (streamReader)) {
 				obj = serializer.Deserialize<T> (jsonReader);
-						}
+			}
 			return obj;
 		}
 	}
-		
+
 	class PageableResponse<TObject>
 	{
-		[JsonProperty("@odata.context")]
-		public string Context { get; set; }	
+		[JsonProperty ("@odata.context")]
+		public string Context { get; set; }
 
-		[JsonProperty("value")]
-		public List<TObject> Items {get;set;}
+		[JsonProperty ("value")]
+		public List<TObject> Items { get; set; }
 
-		[JsonProperty("@odata.nextLink")]
-		public string NextLink { get; set; }	
+		[JsonProperty ("@odata.nextLink")]
+		public string NextLink { get; set; }
 	}
 
 	class Message
 	{
-		[JsonProperty("Sender")]
+		[JsonProperty ("Sender")]
 		public Address Sender { get; set; }
 
-		[JsonProperty("ToRecipients")]
+		[JsonProperty ("ToRecipients")]
 		public List<Address> To { get; set; }
 
-		[JsonProperty("CcRecipients")]
+		[JsonProperty ("CcRecipients")]
 		public List<Address> Cc { get; set; }
 
-		[JsonProperty("BccRecipients")]
+		[JsonProperty ("BccRecipients")]
 		public List<Address> Bcc { get; set; }
 
-		[JsonProperty("DateTimeReceived")]
+		[JsonProperty ("DateTimeReceived")]
 		public DateTime DateTimeReceived { get; set; }
 
-		[JsonProperty("Subject")]
-		public string Subject {get;set;}
+		[JsonProperty ("Subject")]
+		public string Subject { get; set; }
 	}
 
 	class Address
 	{
-		[JsonProperty("EmailAddress")]
+		[JsonProperty ("EmailAddress")]
 		public EmailAddress EmailAddress { get; set; }
 	}
 
@@ -174,8 +171,7 @@ namespace InboxCrawler
 	{
 		public override bool Equals (object obj)
 		{
-			if (obj is EmailAddress) 
-			{
+			if (obj is EmailAddress) {
 				EmailAddress em = obj as EmailAddress;
 				return this.Address.Equals (em.Address);
 			}
@@ -184,28 +180,28 @@ namespace InboxCrawler
 
 		public int Compare (EmailAddress x, EmailAddress y)
 		{
-			return x.Address.CompareTo(y.Address);
+			return x.Address.CompareTo (y.Address);
 		}
 
-		[JsonProperty("Address")]
+		[JsonProperty ("Address")]
 		public string Address { get; set; }
 
-		[JsonProperty("Name")]
+		[JsonProperty ("Name")]
 		public string Name { get; set; }
 	}
-		
+
 	class Folder
 	{
-		[JsonProperty("@odata.id")]
+		[JsonProperty ("@odata.id")]
 		public string ID { get; set; }
 
-		[JsonProperty("DisplayName")]
+		[JsonProperty ("DisplayName")]
 		public string DisplayName { get; set; }
 
-		[JsonProperty("ParentFolderID")]
+		[JsonProperty ("ParentFolderID")]
 		public string ParentFolderID { get; set; }
 
-		[JsonProperty("ChildFolderCount")]
+		[JsonProperty ("ChildFolderCount")]
 		public int ChildFolderCount { get; set; }
 
 		public IEnumerable<Folder> ChildFolders { get; set; }

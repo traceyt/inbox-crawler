@@ -38,6 +38,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PageableResponse.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="EmailAddress.cs" />
+    <Compile Include="Folder.cs" />
+    <Compile Include="Address.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
