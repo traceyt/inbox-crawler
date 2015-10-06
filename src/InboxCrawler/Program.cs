@@ -15,33 +15,30 @@ namespace InboxCrawler
 {
 	class MainClass
 	{
-		static JsonSerializerSettings settings = new JsonSerializerSettings
-		{
+		static JsonSerializerSettings settings = new JsonSerializerSettings {
 			DateFormatHandling = DateFormatHandling.IsoDateFormat,
 			DateTimeZoneHandling = DateTimeZoneHandling.Utc,
 			DateParseHandling = DateParseHandling.DateTime
 		};
 
-		static JsonSerializer serializer = JsonSerializer.Create(settings);
+		static JsonSerializer serializer = JsonSerializer.Create (settings);
 
 		public static void Main (string[] args)
 		{
-			JObject root = GetJsonObject<JObject> (new Uri("https://outlook.office365.com/api/v1.0/me"), GetCredentials()); 
+			JObject root = GetJsonObject<JObject> (new Uri ("https://outlook.office365.com/api/v1.0/me"), GetCredentials ()); 
 
-			foreach (JProperty prop in root.Properties()) 
-			{
+			foreach (JProperty prop in root.Properties()) {
 				Debug.WriteLine ("{0}:{1}", prop.Name, prop.Value); 
 			}
 
-			var folders = EnumerateFolder("https://outlook.office365.com/api/v1.0/me/folders").ToArray();
-			foreach (Folder folder in folders) 
-			{
+			var folders = EnumerateFolder ("https://outlook.office365.com/api/v1.0/me/folders").ToArray ();
+			foreach (Folder folder in folders) {
 				Debug.WriteLine ("{0}:{1}", folder.DisplayName, folder.ID); 
 			}
 
 			var map = new Dictionary<EmailAddress, Message> ();
 
-			var inbox = folders.FirstOrDefault(f => f.DisplayName == "Inbox");
+			var inbox = folders.FirstOrDefault (f => f.DisplayName == "Inbox");
 			DumpTopOffenders (inbox);
 
 			var loPri = folders.FirstOrDefault (f => f.DisplayName == "Inbox Low Pri");
