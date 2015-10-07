@@ -42,6 +42,10 @@
     <ProjectGuid>35cb12e0-e3ff-4797-902b-7aeaf90947c2</ProjectGuid>
     <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
   </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TypeScriptJSXEmit>react</TypeScriptJSXEmit>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0'">
     <VisualStudioVersion>14.0</VisualStudioVersion>
@@ -77,7 +81,7 @@
     <Content Include="Scripts\react\react-0.13.1.min.js" />
     <Content Include="Scripts\react\react-with-addons-0.13.1.js" />
     <Content Include="Scripts\react\react-with-addons-0.13.1.min.js" />
-    <TypeScriptCompile Include="src\helloworld.tsx" />
+    <TypeScriptCompile Include="Scripts\helloworld.tsx" />
     <Content Include="WinJS\css\ui-dark.css" />
     <Content Include="WinJS\css\ui-light.css" />
     <Content Include="WinJS\fonts\Symbols.ttf" />
@@ -85,6 +89,7 @@
     <Content Include="WinJS\js\base.js" />
     <Content Include="WinJS\js\ui.js" />
     <None Include="DeClutter_TemporaryKey.pfx" />
+    <TypeScriptCompile Include="typing\react.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4a0dddb5-7a95-4fbf-97cc-616d07737a77}" />
