@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DeclutterLibrary
@@ -22,8 +21,15 @@ namespace DeclutterLibrary
 
         static JsonSerializer serializer = JsonSerializer.Create(settings);
 
-        public IEnumerable<Message> GetData(string token, string folderName)
+        public IEnumerable<Message> getData(string token, string folderName)
         {
+            System.Diagnostics.Debugger.Launch();
+            yield break;
+        }
+
+        public IEnumerable<Message> getData1(string token, string folderName)
+        {
+            System.Diagnostics.Debug.WriteLine("Test");
             var folders = EnumerateFolder("https://outlook.office365.com/api/v1.0/me/folders").ToArray();
             var folder = folders.FirstOrDefault(f => f.DisplayName == folderName);
 
@@ -92,7 +98,7 @@ namespace DeclutterLibrary
         {
             NetworkCredential credentials = new NetworkCredential();
             credentials.UserName = "stephbu@microsoft.com";
-            credentials.Password = "****";
+            credentials.Password = "********";
 
             return credentials;
         }
