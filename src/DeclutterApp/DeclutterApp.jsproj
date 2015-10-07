@@ -38,7 +38,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>67754842-72a8-492e-92e9-011daffa4033</ProjectGuid>
+    <ProjectGuid>a4317f2f-8983-44c2-84b9-d65b9c9630fa</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0'">
@@ -53,7 +53,7 @@
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>$(VersionNumberMajor).$(VersionNumberMinor)</MinimumVisualStudioVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>Sample_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>DeclutterApp_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
@@ -75,10 +75,10 @@
     <Content Include="WinJS\js\en-US\ui.strings.js" />
     <Content Include="WinJS\js\base.js" />
     <Content Include="WinJS\js\ui.js" />
-    <None Include="Sample_TemporaryKey.pfx" />
+    <None Include="DeclutterApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SampleRuntimeComponent\SampleRuntimeComponent.csproj" />
+    <ProjectReference Include="..\DeclutterLibrary\DeclutterLibrary.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below then uncomment
