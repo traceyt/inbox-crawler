@@ -77,7 +77,7 @@
     <Content Include="Scripts\react\react-0.13.1.min.js" />
     <Content Include="Scripts\react\react-with-addons-0.13.1.js" />
     <Content Include="Scripts\react\react-with-addons-0.13.1.min.js" />
-    <TypeScriptCompile Include="src\file.tsx" />
+    <TypeScriptCompile Include="src\helloworld.tsx" />
     <Content Include="WinJS\css\ui-dark.css" />
     <Content Include="WinJS\css\ui-light.css" />
     <Content Include="WinJS\fonts\Symbols.ttf" />
