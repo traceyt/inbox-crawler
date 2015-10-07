@@ -25,7 +25,6 @@
 	};
 
 	var obj = new SampleRuntimeComponent.TestClass();
-
 	var test = obj.helloWorld();
 
 	app.start();
