@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DeclutterLibrary
 {
-    public sealed class Class1
+
+    public sealed class API
     {
+        public IEnumerable<Message> GetData()
+        {
+            yield break;
+        }
     }
 }
