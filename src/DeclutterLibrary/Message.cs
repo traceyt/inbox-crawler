@@ -6,7 +6,7 @@ using Newtonsoft.Json.Serialization;
 namespace DeclutterLibrary
 {
 
-    public class Message
+    public sealed class Message
 	{
 		[JsonProperty ("Sender")]
 		public Address Sender { get; set; }
@@ -21,10 +21,9 @@ namespace DeclutterLibrary
 		public IEnumerable<Address> Bcc { get; set; }
 
 		[JsonProperty ("DateTimeReceived")]
-		public DateTime DateTimeReceived { get; set; }
+		public DateTimeOffset DateTimeReceived { get; set; }
 
 		[JsonProperty ("Subject")]
 		public string Subject { get; set; }
 	}
-	
 }
