@@ -12,11 +12,6 @@ using Windows.UI.Xaml;
 
 namespace DeclutterLibrary
 {
-    public sealed class Email
-    {
-        public string Subject { get; set; }
-    }
-
     public sealed class EmailReader 
     {
         public static AuthenticationContext _authenticationContext { get; set; }
@@ -129,6 +124,7 @@ namespace DeclutterLibrary
             foreach (var message in mailResults.CurrentPage)
             {
                 emailList.Add(new Message {
+                    ID = message.Id,
                     To = message.ToRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
                     Cc = message.CcRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
                     Bcc = message.BccRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
@@ -138,12 +134,9 @@ namespace DeclutterLibrary
                     },
                     DateTimeReceived = message.DateTimeReceived == null ? DateTimeOffset.MinValue : message.DateTimeReceived.Value
                 });
-
             }
 
             return emailList;
-
         }
-
     }
 }
