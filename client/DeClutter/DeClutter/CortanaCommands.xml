@@ -6,14 +6,14 @@
     <AppName>declutter</AppName>
     <Example>launch declutter through Cortana</Example>
     
-    <Command Name="showAsList">
+    <Command Name="showCloud">
       <Example>display the inbox as a list</Example>
-      <ListenFor RequireAppName="BeforeOrAfterPhrase">show [my] inbox cloud [on] </ListenFor>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">show [my] inbox [point] cloud [on] </ListenFor>
       <Feedback>Processing command...</Feedback>
       <Navigate/>
     </Command>
 
-    <Command Name="showAsCloud">
+    <Command Name="showList">
       <Example>display the inbox as a point cloud</Example>
       <ListenFor RequireAppName="BeforeOrAfterPhrase">[show] [my] inbox list [on] </ListenFor>
       <Feedback>Processing command...</Feedback>
