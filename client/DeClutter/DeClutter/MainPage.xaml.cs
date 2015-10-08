@@ -23,6 +23,7 @@ namespace DeClutter
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        IEnumerable<Message> Emails;
         public MainPage()
         {
             this.InitializeComponent();
@@ -33,7 +34,18 @@ namespace DeClutter
             EmailReader a = new EmailReader();
             var res = await a.AuthenticateOutlookClientAsync("Mail");
 
-            var emails = await a.GetEmailMessagesAsync(1, 100);
+            Emails = await a.GetEmailMessagesAsync(1, 100);
+            UpdateView();
+        }
+
+        private void UpdateView()
+        {
+            // update view
+            mailListView.DataContext = Emails;
+
+            // switch to list view
+            loginView.Visibility = Visibility.Collapsed;
+            mailListView.Visibility = Visibility.Visible;
         }
     }
 }
