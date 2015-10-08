@@ -138,5 +138,46 @@ namespace DeclutterLibrary
 
             return emailList;
         }
+        public IAsyncOperation<IEnumerable<KeyValuePair<string, int>>> GroupEmailsBySenderAsync()
+        {
+            return GroupEmailsBySenderAsyncInternal().AsAsyncOperation<IEnumerable<KeyValuePair<string, int>>>();
+        }
+
+        /// <summary>
+        /// Groups emails by sender 
+        /// </summary>
+        /// <returns></returns>
+        internal async Task<IEnumerable<KeyValuePair<string, int>>> GroupEmailsBySenderAsyncInternal()
+        {
+
+            bool continueReading = true;
+            int pageCounter = 0;
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+
+            while (continueReading)
+            {
+                var list = await GetEmailMessagesInternalAsync(pageCounter, 100);
+
+                if (list != null && list.Count() > 0)
+                {
+                    foreach (var item in list)
+                    {
+                        dictionary[item.Sender.EmailAddress.Address] =
+                            dictionary.ContainsKey(item.Sender.EmailAddress.Address) ?
+                            dictionary[item.Sender.EmailAddress.Address] + 1 : 1;
+                    }
+                }
+                else
+                {
+                    continueReading = false;
+                }
+
+                pageCounter++;
+            }
+
+            return dictionary.AsEnumerable();
+
+        }
+
     }
 }
