@@ -10,7 +10,7 @@ using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI.Xaml;
 
-namespace Authorize
+namespace DeclutterLibrary
 {
     public sealed class Email
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeclutterLibrary;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,14 @@ namespace DeClutter
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            EmailReader a = new EmailReader();
+            var res = await a.AuthenticateOutlookClientAsync("Mail");
+
+            var emails = await a.GetEmailMessagesAsync(1, 100);
         }
     }
 }

@@ -94,6 +94,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
+    <None Include="Service References\Office365\ConnectedService.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -132,11 +133,14 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DeclutterLibrary">
-      <HintPath>..\..\..\src\DeClutterLibrary\bin\Debug\DeclutterLibrary.winmd</HintPath>
+      <HintPath>..\..\..\src\DeClutterLibrary\bin\x64\Debug\DeclutterLibrary.winmd</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\src\DeClutterLibrary\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
