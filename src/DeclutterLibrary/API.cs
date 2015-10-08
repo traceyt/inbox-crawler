@@ -10,7 +10,7 @@ namespace DeclutterLibrary
 {
     public sealed class API
     {
-        public async Task<IEnumerable<Message>> getDataAsync(string token, string folderName)
+        public async Task<IEnumerable<Message>> getDataAsync()
         {
             EmailReader reader = new EmailReader();
             var res = await reader.AuthenticateOutlookClientAsync("Mail");
