@@ -122,7 +122,7 @@ namespace DeclutterLibrary
         {
             var mailResults = await (from i in _outLookClient.Me.Folders.GetById("Inbox").Messages
                                      orderby i.DateTimeReceived descending
-                                     select i).Skip((pageNo - 1) * pageSize).Take(pageSize).ExecuteAsync();
+                                     select i).Skip((pageNo) * pageSize).Take(pageSize).ExecuteAsync();
 
             List<Message> emailList = new List<Message>();
 
