@@ -24,9 +24,11 @@ namespace DeClutter
     public sealed partial class MainPage : Page
     {
         IEnumerable<Message> Emails;
+        API api;
         public MainPage()
         {
             this.InitializeComponent();
+            api = new API();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -34,7 +36,8 @@ namespace DeClutter
             EmailReader a = new EmailReader();
             var res = await a.AuthenticateOutlookClientAsync("Mail");
 
-            Emails = await a.GetEmailMessagesAsync(1, 100);
+           // Emails = await a.GetEmailMessagesAsync(1, 100);
+            Emails = await api.getDataAsync();
             UpdateView();
         }
 
