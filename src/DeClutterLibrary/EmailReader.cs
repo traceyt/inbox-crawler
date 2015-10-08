@@ -139,9 +139,6 @@ namespace DeclutterLibrary
                     DateTimeReceived = message.DateTimeReceived == null ? DateTimeOffset.MinValue : message.DateTimeReceived.Value
                 });
 
-                //System.Diagnostics.Debug.WriteLine("Message '{0}' received at '{1}'.",
-                //message.Subject,
-                //message.DateTimeReceived.ToString());
             }
 
             return emailList;
