@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using System.Diagnostics;
+
 namespace DeClutter
 {
     /// <summary>
@@ -35,12 +37,34 @@ namespace DeClutter
             this.Suspending += OnSuspending;
         }
 
-        /// <summary>
-        /// Invoked when the application is launched normally by the end user.  Other entry points
-        /// will be used such as when the application is launched to open a specific file.
-        /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnActivated(IActivatedEventArgs e)
+        {
+            #region Activation Code
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame == null)
+            {
+                rootFrame = new Frame();
+                rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
+
+                rootFrame.NavigationFailed += OnNavigationFailed;
+
+                Window.Current.Content = rootFrame;
+                rootFrame.Navigate(typeof(MainPage));
+                // Ensure the current window is active
+                Window.Current.Activate();
+
+            }
+            #endregion
+        }
+
+
+            /// <summary>
+            /// Invoked when the application is launched normally by the end user.  Other entry points
+            /// will be used such as when the application is launched to open a specific file.
+            /// </summary>
+            /// <param name="e">Details about the launch request and process.</param>
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
@@ -79,14 +103,29 @@ namespace DeClutter
             }
             // Ensure the current window is active
             Window.Current.Activate();
-        }
 
-        /// <summary>
-        /// Invoked when Navigation to a certain page fails
-        /// </summary>
-        /// <param name="sender">The Frame which failed navigation</param>
-        /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+
+            // Install VCD 
+             try
+             {
+                var storageFile =
+                    await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///CortanaCommands.xml"));
+                
+                 await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
+                
+                 Debug.WriteLine("VCD installed");
+              }  catch {  Debug.WriteLine("VCD installation failed");             }
+
+
+
+            }
+
+            /// <summary>
+            /// Invoked when Navigation to a certain page fails
+            /// </summary>
+            /// <param name="sender">The Frame which failed navigation</param>
+            /// <param name="e">Details about the navigation failure</param>
+            void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
