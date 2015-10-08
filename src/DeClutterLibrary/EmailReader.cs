@@ -175,7 +175,11 @@ namespace DeclutterLibrary
                 pageCounter++;
             }
 
-            return dictionary.AsEnumerable();
+            var items = from pair in dictionary
+                        orderby pair.Value ascending
+                        select pair;
+
+            return items.AsEnumerable();
 
         }
         public IAsyncOperation<IEnumerable<Message>> GetEmailMessagesBySenderAsync(string sender)
