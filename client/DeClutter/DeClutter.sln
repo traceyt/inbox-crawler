@@ -3,44 +3,36 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "DeClutter", "DeClutter\DeClutter.jsproj", "{35CB12E0-E3FF-4797-902B-7AEAF90947C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeClutter", "DeClutter\DeClutter.csproj", "{2771370D-30E1-45AB-AB33-CC3717D88B8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|ARM.ActiveCfg = Debug|ARM
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|ARM.Build.0 = Debug|ARM
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|ARM.Deploy.0 = Debug|ARM
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|x64.ActiveCfg = Debug|x64
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|x64.Build.0 = Debug|x64
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|x64.Deploy.0 = Debug|x64
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|x86.ActiveCfg = Debug|x86
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|x86.Build.0 = Debug|x86
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Debug|x86.Deploy.0 = Debug|x86
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|ARM.ActiveCfg = Release|ARM
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|ARM.Build.0 = Release|ARM
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|ARM.Deploy.0 = Release|ARM
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|x64.ActiveCfg = Release|x64
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|x64.Build.0 = Release|x64
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|x64.Deploy.0 = Release|x64
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|x86.ActiveCfg = Release|x86
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|x86.Build.0 = Release|x86
-		{35CB12E0-E3FF-4797-902B-7AEAF90947C2}.Release|x86.Deploy.0 = Release|x86
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Debug|ARM.ActiveCfg = Debug|ARM
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Debug|ARM.Build.0 = Debug|ARM
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Debug|ARM.Deploy.0 = Debug|ARM
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Debug|x64.ActiveCfg = Debug|x64
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Debug|x64.Build.0 = Debug|x64
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Debug|x64.Deploy.0 = Debug|x64
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Debug|x86.ActiveCfg = Debug|x86
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Debug|x86.Build.0 = Debug|x86
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Debug|x86.Deploy.0 = Debug|x86
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Release|ARM.ActiveCfg = Release|ARM
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Release|ARM.Build.0 = Release|ARM
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Release|ARM.Deploy.0 = Release|ARM
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Release|x64.ActiveCfg = Release|x64
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Release|x64.Build.0 = Release|x64
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Release|x64.Deploy.0 = Release|x64
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Release|x86.ActiveCfg = Release|x86
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Release|x86.Build.0 = Release|x86
+		{2771370D-30E1-45AB-AB33-CC3717D88B8B}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
