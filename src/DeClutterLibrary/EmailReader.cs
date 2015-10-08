@@ -176,7 +176,7 @@ namespace DeclutterLibrary
             }
 
             var items = from pair in dictionary
-                        orderby pair.Value ascending
+                        orderby pair.Value descending
                         select pair;
 
             return items.AsEnumerable();
