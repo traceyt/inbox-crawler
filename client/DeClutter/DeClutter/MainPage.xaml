@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView x:Name="mailListView" HorizontalAlignment="Left" Height="566" Margin="10,64,0,0" VerticalAlignment="Top" Width="340"/>
 
     </Grid>
 </Page>
