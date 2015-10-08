@@ -118,6 +118,11 @@
     <None Include="DeClutter_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\shredder.png" />
+    <Content Include="Assets\shredder1240.png" />
+    <Content Include="Assets\shredder300.png" />
+    <Content Include="Assets\shredder600.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
     <Content Include="CortanaCommands.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
