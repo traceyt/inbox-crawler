@@ -474,6 +474,20 @@
           "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.Discovery.dll": {}
         }
       },
+      "Microsoft.Office365.OAuth.Windows/1.0.22": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.10.10910.1511, )",
+          "Microsoft.Office365.Discovery": "(, )"
+        },
+        "compile": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        }
+      },
       "Microsoft.Office365.OutlookServices/1.0.35": {
         "dependencies": {
           "Microsoft.OData.ProxyExtensions": "[1.0.35, )"
@@ -483,6 +497,17 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Microsoft.Office365.OutlookServices.Portable.dll": {}
+        }
+      },
+      "Microsoft.Office365.SharePoint/1.0.22": {
+        "dependencies": {
+          "Microsoft.OData.Client": "[6.8.1, )"
+        },
+        "compile": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
         }
       },
       "Microsoft.Spatial/6.11.0": {
@@ -2456,6 +2481,20 @@
           "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.Discovery.dll": {}
         }
       },
+      "Microsoft.Office365.OAuth.Windows/1.0.22": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.10.10910.1511, )",
+          "Microsoft.Office365.Discovery": "(, )"
+        },
+        "compile": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        }
+      },
       "Microsoft.Office365.OutlookServices/1.0.35": {
         "dependencies": {
           "Microsoft.OData.ProxyExtensions": "[1.0.35, )"
@@ -2465,6 +2504,17 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Microsoft.Office365.OutlookServices.Portable.dll": {}
+        }
+      },
+      "Microsoft.Office365.SharePoint/1.0.22": {
+        "dependencies": {
+          "Microsoft.OData.Client": "[6.8.1, )"
+        },
+        "compile": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
         }
       },
       "Microsoft.Spatial/6.11.0": {
@@ -4471,6 +4521,20 @@
           "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.Discovery.dll": {}
         }
       },
+      "Microsoft.Office365.OAuth.Windows/1.0.22": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.10.10910.1511, )",
+          "Microsoft.Office365.Discovery": "(, )"
+        },
+        "compile": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        }
+      },
       "Microsoft.Office365.OutlookServices/1.0.35": {
         "dependencies": {
           "Microsoft.OData.ProxyExtensions": "[1.0.35, )"
@@ -4480,6 +4544,17 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Microsoft.Office365.OutlookServices.Portable.dll": {}
+        }
+      },
+      "Microsoft.Office365.SharePoint/1.0.22": {
+        "dependencies": {
+          "Microsoft.OData.Client": "[6.8.1, )"
+        },
+        "compile": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
         }
       },
       "Microsoft.Spatial/6.11.0": {
@@ -6491,6 +6566,20 @@
           "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.Discovery.dll": {}
         }
       },
+      "Microsoft.Office365.OAuth.Windows/1.0.22": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.10.10910.1511, )",
+          "Microsoft.Office365.Discovery": "(, )"
+        },
+        "compile": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        }
+      },
       "Microsoft.Office365.OutlookServices/1.0.35": {
         "dependencies": {
           "Microsoft.OData.ProxyExtensions": "[1.0.35, )"
@@ -6500,6 +6589,17 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Microsoft.Office365.OutlookServices.Portable.dll": {}
+        }
+      },
+      "Microsoft.Office365.SharePoint/1.0.22": {
+        "dependencies": {
+          "Microsoft.OData.Client": "[6.8.1, )"
+        },
+        "compile": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
         }
       },
       "Microsoft.Spatial/6.11.0": {
@@ -8506,6 +8606,20 @@
           "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.Discovery.dll": {}
         }
       },
+      "Microsoft.Office365.OAuth.Windows/1.0.22": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.10.10910.1511, )",
+          "Microsoft.Office365.Discovery": "(, )"
+        },
+        "compile": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        }
+      },
       "Microsoft.Office365.OutlookServices/1.0.35": {
         "dependencies": {
           "Microsoft.OData.ProxyExtensions": "[1.0.35, )"
@@ -8515,6 +8629,17 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Microsoft.Office365.OutlookServices.Portable.dll": {}
+        }
+      },
+      "Microsoft.Office365.SharePoint/1.0.22": {
+        "dependencies": {
+          "Microsoft.OData.Client": "[6.8.1, )"
+        },
+        "compile": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
         }
       },
       "Microsoft.Spatial/6.11.0": {
@@ -10526,6 +10651,20 @@
           "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.Discovery.dll": {}
         }
       },
+      "Microsoft.Office365.OAuth.Windows/1.0.22": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.10.10910.1511, )",
+          "Microsoft.Office365.Discovery": "(, )"
+        },
+        "compile": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        }
+      },
       "Microsoft.Office365.OutlookServices/1.0.35": {
         "dependencies": {
           "Microsoft.OData.ProxyExtensions": "[1.0.35, )"
@@ -10535,6 +10674,17 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Microsoft.Office365.OutlookServices.Portable.dll": {}
+        }
+      },
+      "Microsoft.Office365.SharePoint/1.0.22": {
+        "dependencies": {
+          "Microsoft.OData.Client": "[6.8.1, )"
+        },
+        "compile": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
         }
       },
       "Microsoft.Spatial/6.11.0": {
@@ -12541,6 +12691,20 @@
           "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.Discovery.dll": {}
         }
       },
+      "Microsoft.Office365.OAuth.Windows/1.0.22": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.10.10910.1511, )",
+          "Microsoft.Office365.Discovery": "(, )"
+        },
+        "compile": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Microsoft.Office365.OAuth.dll": {},
+          "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll": {}
+        }
+      },
       "Microsoft.Office365.OutlookServices/1.0.35": {
         "dependencies": {
           "Microsoft.OData.ProxyExtensions": "[1.0.35, )"
@@ -12550,6 +12714,17 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/Microsoft.Office365.OutlookServices.Portable.dll": {}
+        }
+      },
+      "Microsoft.Office365.SharePoint/1.0.22": {
+        "dependencies": {
+          "Microsoft.OData.Client": "[6.8.1, )"
+        },
+        "compile": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll": {}
         }
       },
       "Microsoft.Spatial/6.11.0": {
@@ -14962,6 +15137,23 @@
         "package/services/metadata/core-properties/d734e8dbae254b348211eb65c4b33961.psmdcp"
       ]
     },
+    "Microsoft.Office365.OAuth.Windows/1.0.22": {
+      "sha512": "c/aQIGuLXBskOQI5MRG5N5hJCnijNbXc7fg4PK3njRRrM2ZmTJJGq4wfde6occRSURlQeHwS+OtMI7AxpWu/Ow==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net45/Microsoft.Office365.OAuth.dll",
+        "lib/net45/Microsoft.Office365.OAuth.WindowsForms.dll",
+        "lib/win81/Microsoft.Office365.OAuth.dll",
+        "lib/win81/Microsoft.Office365.OAuth.WindowsStore.dll",
+        "lib/WindowsPhoneApp81/Microsoft.Office365.OAuth.dll",
+        "lib/WindowsPhoneApp81/Microsoft.Office365.OAuth.WindowsPhone.WinRT.dll",
+        "License-Stable.rtf",
+        "Microsoft.Office365.OAuth.Windows.nuspec",
+        "package/services/metadata/core-properties/8fe13d6858804cd580f6c9ac5cadc3f8.psmdcp"
+      ]
+    },
     "Microsoft.Office365.OutlookServices/1.0.35": {
       "sha512": "XASluAMNVcJXKToG1SnxdkX+OZj5iY8UF6prLSn8DwGsaLNwIhG6paKiE/Rq08dHOgHBDGzQ/aRT4xzUsFDWpQ==",
       "type": "Package",
@@ -14972,6 +15164,19 @@
         "License-Stable.rtf",
         "Microsoft.Office365.OutlookServices.nuspec",
         "package/services/metadata/core-properties/8e66815f77e54459bb1a7819940afe53.psmdcp"
+      ]
+    },
+    "Microsoft.Office365.SharePoint/1.0.22": {
+      "sha512": "g1DXfKvKtl8A1nP3O1DIsdnlKp3SwgrbyxNqqew1vbYDERMg/gVZmbbclxjKU+8RgfJfNuWYgKW4QaI7r4g+fg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net40/Microsoft.Office365.SharePoint.dll",
+        "lib/portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81/Microsoft.Office365.SharePoint.Portable.dll",
+        "License-Stable.rtf",
+        "Microsoft.Office365.SharePoint.nuspec",
+        "package/services/metadata/core-properties/c79d802c94294a47b3d7ecb8a34e1c2b.psmdcp"
       ]
     },
     "Microsoft.Spatial/6.11.0": {

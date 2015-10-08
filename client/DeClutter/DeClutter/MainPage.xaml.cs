@@ -24,7 +24,8 @@ namespace DeClutter
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        IEnumerable<Message> Emails;
+        //IEnumerable<Message> Emails;
+        IEnumerable<KeyValuePair<string,int>> GroupEmails;
         API api;
         private string postAuthPage;
 
@@ -44,18 +45,19 @@ namespace DeClutter
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            EmailReader a = new EmailReader();
-            var res = await a.AuthenticateOutlookClientAsync("Mail");
+            EmailReader emailReader = new EmailReader();
+            var res = await emailReader.AuthenticateOutlookClientAsync("Mail");
 
-           // Emails = await a.GetEmailMessagesAsync(1, 100);
-            Emails = await api.getDataAsync();
+            // Emails = await a.GetEmailMessagesAsync(1, 100);
+            //Emails = await api.getDataAsync();
+            GroupEmails = await emailReader.GroupEmailsBySenderAsync();
             UpdateView();
         }
 
         private void UpdateView()
         {
             // update view
-            mailListView.DataContext = Emails;
+            mailListView.DataContext = GroupEmails; //Emails;
 
             // switch to list view
             loginView.Visibility = Visibility.Collapsed;

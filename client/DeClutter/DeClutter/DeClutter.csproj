@@ -154,15 +154,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DeclutterLibrary">
-      <HintPath>..\..\..\src\DeClutterLibrary\bin\Debug\DeclutterLibrary.winmd</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\src\DeClutterLibrary\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\DeClutterLibrary\DeClutterLibrary.csproj">
+      <Project>{22991968-b500-4745-8a7e-276709cd42e6}</Project>
+      <Name>DeClutterLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
