@@ -104,7 +104,7 @@ namespace InboxCrawler
 		{
 			NetworkCredential credentials = new NetworkCredential ();
 			credentials.UserName = "stephbu@microsoft.com";
-			credentials.Password = "*******";
+			credentials.Password = "SummerF3st!";
 
 			return credentials;
 		}

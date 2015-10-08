@@ -58,9 +58,9 @@ namespace DeclutterLibrary
             return CreateOutlookClientAsyncInternal(capability).AsAsyncOperation<bool>();
         }
 
-        public IAsyncOperation<IEnumerable<Email>> GetEmailMessagesAsync(int pageNo, int pageSize)
+        public IAsyncOperation<IEnumerable<Message>> GetEmailMessagesAsync(int pageNo, int pageSize)
         {
-            return GetEmailMessagesInternalAsync(pageNo, pageSize).AsAsyncOperation<IEnumerable<Email>>();
+            return GetEmailMessagesInternalAsync(pageNo, pageSize).AsAsyncOperation<IEnumerable<Message>>();
         }
 
         internal async Task<string> GetTokenHelperAsync(AuthenticationContext context, string resourceId)
@@ -118,24 +118,24 @@ namespace DeclutterLibrary
             }
         }
 
-        internal async Task<IEnumerable<Email>> GetEmailMessagesInternalAsync(int pageNo, int pageSize)
+        internal async Task<IEnumerable<Message>> GetEmailMessagesInternalAsync(int pageNo, int pageSize)
         {
             var mailResults = await (from i in _outLookClient.Me.Folders.GetById("Inbox").Messages
                                      orderby i.DateTimeReceived descending
                                      select i).Skip((pageNo - 1) * pageSize).Take(pageSize).ExecuteAsync();
 
-            List<Email> emailList = new List<Email>();
+            List<Message> emailList = new List<Message>();
 
             foreach (var message in mailResults.CurrentPage)
             {
-                emailList.Add( new Email() { Subject = message.Subject });
+                emailList.Add( new Message { Subject = message.Subject, Sender = new Address { EmailAddress = new EmailAddress { Address = message.Sender.EmailAddress.Address, Name = message.Sender.EmailAddress.Name } } });
 
                 //System.Diagnostics.Debug.WriteLine("Message '{0}' received at '{1}'.",
                 //message.Subject,
                 //message.DateTimeReceived.ToString());
             }
 
-            return emailList.AsEnumerable<Email>();
+            return emailList;
 
         }
 
