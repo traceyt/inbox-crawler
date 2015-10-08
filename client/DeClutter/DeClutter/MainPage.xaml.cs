@@ -72,8 +72,12 @@ namespace DeClutter
 
         private void mailListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Message obj = e.ClickedItem as Message;
-            this.Frame.Navigate(typeof(DetailPage), obj);
+            //Message obj = e.ClickedItem as Message;
+            KeyValuePair<string, int>? kv = e.ClickedItem as KeyValuePair<string, int>?;
+
+            string email = kv.Value.Key;
+
+            this.Frame.Navigate(typeof(DetailPage), email);
         }
     }
 }
