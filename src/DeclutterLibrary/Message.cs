@@ -8,6 +8,8 @@ namespace DeclutterLibrary
 
     public sealed class Message
 	{
+        public string ID { get; set; }
+
 		[JsonProperty ("Sender")]
 		public Address Sender { get; set; }
 
