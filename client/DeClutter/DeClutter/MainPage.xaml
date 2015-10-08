@@ -20,10 +20,11 @@
                   Visibility="Collapsed">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Background="White">
-                        <StackPanel Orientation="Vertical">
+                    <Border Background="White" BorderBrush="Gray" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical" Padding="0,20,0,20">
                             <TextBlock Text="{Binding Path=Subject}" Style="{ThemeResource TitleTextBlockStyle}" />
                             <TextBlock Text="{Binding Path=Sender.EmailAddress.Address}" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="Gray" />
+                            <!-- <Rectangle HorizontalAlignment="Stretch" Fill="Gray" Height="1"/> -->
                         </StackPanel>
                     </Border>
                 </DataTemplate>
