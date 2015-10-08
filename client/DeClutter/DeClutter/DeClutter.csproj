@@ -118,6 +118,9 @@
     <None Include="DeClutter_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CortanaCommands.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -147,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DeclutterLibrary">
-      <HintPath>..\..\..\src\DeClutterLibrary\bin\x64\Debug\DeclutterLibrary.winmd</HintPath>
+      <HintPath>..\..\..\src\DeClutterLibrary\bin\Debug\DeclutterLibrary.winmd</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\src\DeClutterLibrary\bin\Debug\Newtonsoft.Json.dll</HintPath>

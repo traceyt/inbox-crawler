@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+
+  <CommandSet xml:lang="en-us">
+
+    <AppName>declutter</AppName>
+    <Example>launch declutter through Cortana</Example>
+    
+    <Command Name="showAsList">
+      <Example>display the inbox as a list</Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">show [my] inbox cloud [on] </ListenFor>
+      <Feedback>Processing command...</Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="showAsCloud">
+      <Example>display the inbox as a point cloud</Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">[show] [my] inbox list [on] </ListenFor>
+      <Feedback>Processing command...</Feedback>
+      <Navigate/>
+    </Command>
+
+  </CommandSet>
+
+</VoiceCommands>
+

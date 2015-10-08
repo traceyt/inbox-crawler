@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeClutter", "DeClutter\DeClutter.csproj", "{2771370D-30E1-45AB-AB33-CC3717D88B8B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{22991968-B500-4745-8A7E-276709CD42E6} = {22991968-B500-4745-8A7E-276709CD42E6}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeClutterLibrary", "..\..\src\DeClutterLibrary\DeClutterLibrary.csproj", "{22991968-B500-4745-8A7E-276709CD42E6}"
 EndProject
