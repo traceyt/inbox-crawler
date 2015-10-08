@@ -1,6 +1,7 @@
 ﻿using DeclutterLibrary;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -49,6 +50,12 @@ namespace DeClutter
             // switch to list view
             loginView.Visibility = Visibility.Collapsed;
             mailListView.Visibility = Visibility.Visible;
+        }
+
+        private void mailListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Message obj = e.ClickedItem as Message;
+            this.Frame.Navigate(typeof(DetailPage), obj);
         }
     }
 }
