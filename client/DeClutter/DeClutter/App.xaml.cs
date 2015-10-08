@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeclutterLibrary;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -50,20 +51,49 @@ namespace DeClutter
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Window.Current.Content = rootFrame;
-                rootFrame.Navigate(typeof(MainPage));
-                // Ensure the current window is active
-                Window.Current.Activate();
 
             }
             #endregion
+
+            if (e.Kind == Windows.ApplicationModel.Activation.ActivationKind.VoiceCommand)
+            {
+
+                var commandArgs = e as Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs;
+                var speechRecognitionResult = commandArgs.Result;
+                string voiceCommandName = speechRecognitionResult.RulePath[0];
+
+                switch (voiceCommandName)
+                {
+                    case "showList":
+                        rootFrame.Navigate(typeof(MainPage), "list");
+                        break;
+                    case "showCloud":
+                        rootFrame.Navigate(typeof(MainPage), "cloud");
+
+                        break;
+                    default:
+                        rootFrame.Navigate(typeof(MainPage));
+                        break;
+
+                }
+
+
+                if (rootFrame.Content == null)
+                {
+                    rootFrame.Navigate(typeof(MainPage));
+                }
+
+                Window.Current.Activate();
+
+            }
         }
 
 
-            /// <summary>
-            /// Invoked when the application is launched normally by the end user.  Other entry points
-            /// will be used such as when the application is launched to open a specific file.
-            /// </summary>
-            /// <param name="e">Details about the launch request and process.</param>
+        /// <summary>
+        /// Invoked when the application is launched normally by the end user.  Other entry points
+        /// will be used such as when the application is launched to open a specific file.
+        /// </summary>
+        /// <param name="e">Details about the launch request and process.</param>
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
 

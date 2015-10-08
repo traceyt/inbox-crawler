@@ -1,6 +1,7 @@
 ﻿using DeclutterLibrary;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,10 +26,20 @@ namespace DeClutter
     {
         IEnumerable<Message> Emails;
         API api;
+        private string postAuthPage;
+
         public MainPage()
         {
             this.InitializeComponent();
             api = new API();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null && e.Parameter is string && !string.IsNullOrWhiteSpace(e.Parameter as string))
+            {
+                postAuthPage = e.Parameter as string;
+            }
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -49,6 +60,18 @@ namespace DeClutter
             // switch to list view
             loginView.Visibility = Visibility.Collapsed;
             mailListView.Visibility = Visibility.Visible;
+
+            if (postAuthPage == "cloud")
+            {
+                this.Frame.Navigate(typeof(Visualizer));
+                return;
+            }
+        }
+
+        private void mailListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Message obj = e.ClickedItem as Message;
+            this.Frame.Navigate(typeof(DetailPage), obj);
         }
     }
 }

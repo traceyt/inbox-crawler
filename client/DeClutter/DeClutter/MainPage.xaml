@@ -5,7 +5,8 @@
     xmlns:local="using:DeClutter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical" Name="loginView" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -17,14 +18,15 @@
                   VerticalAlignment="Top" 
                   Margin="10,64,0,0"
                   ItemsSource="{Binding}"
-                  Visibility="Collapsed">
+                  Visibility="Collapsed"
+                  ItemClick="mailListView_ItemClick"
+                  IsItemClickEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Background="White" BorderBrush="Gray" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch">
                         <StackPanel Orientation="Vertical" Padding="0,20,0,20">
                             <TextBlock Text="{Binding Path=Subject}" Style="{ThemeResource TitleTextBlockStyle}" />
                             <TextBlock Text="{Binding Path=Sender.EmailAddress.Address}" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="Gray" />
-                            <!-- <Rectangle HorizontalAlignment="Stretch" Fill="Gray" Height="1"/> -->
                         </StackPanel>
                     </Border>
                 </DataTemplate>
