@@ -53,7 +53,13 @@ namespace DeClutter
             emails = await EmailReader.Instance().GetEmailMessagesBySenderAsync(email);
 
             // Bind emails to ListView
-            mailListView.DataContext = emails;
+            if(emails != null)
+            {
+                mailListView.DataContext = emails;
+            } else
+            {
+                await Alert.Error("No emails found");
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

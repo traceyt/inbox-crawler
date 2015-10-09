@@ -25,20 +25,14 @@ namespace DeClutter
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private EmailReader emailReader; // API api;
-        private IEnumerable<KeyValuePair<string,int>> groupEmails; //IEnumerable<Message> Emails;
+        private EmailReader emailReader = new EmailReader();
+        private IEnumerable<KeyValuePair<string,int>> groupEmails;
 
         private string postAuthPage;
 
         public MainPage()
         {
             this.InitializeComponent();
-
-            // Init emailReader
-            if (emailReader == null)
-            {
-                EmailReader emailReader = new EmailReader();
-            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -51,6 +45,9 @@ namespace DeClutter
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            // Show loading spinner
+            VisualStateManager.GoToState(this, "Loading", false);
+
             // Initiate login popup
             var result = await EmailReader.Instance().AuthenticateOutlookClientAsync("Mail");
 
@@ -65,26 +62,32 @@ namespace DeClutter
             }
         }
 
-        private void UpdateView()
+        private async void UpdateView()
         {
-            // Populate ListView with grouped emails
-            mailListView.DataContext = groupEmails;
-
-            // Display List View
-            loginView.Visibility = Visibility.Collapsed;
-            mailListView.Visibility = Visibility.Visible;
-
             if (postAuthPage == "cloud")
             {
                 this.Frame.Navigate(typeof(Visualizer));
                 return;
+            }
+
+            if(groupEmails != null)
+            {
+                // Populate ListView with grouped emails
+                mailListView.DataContext = groupEmails;
+
+                // Display List View
+                VisualStateManager.GoToState(this, "Emails", false);
+            }
+            else
+            {
+                await Alert.Error("No emails found");
             }
         }
 
         private void mailListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             // Get email value from selected list item object
-            KeyValuePair<string, int>? kvp = e.ClickedItem as KeyValuePair<string, int>?; //Message obj = e.ClickedItem as Message;
+            KeyValuePair<string, int>? kvp = e.ClickedItem as KeyValuePair<string, int>?;
             string email = kvp.Value.Key;
 
             // Navigate to Detail Page and show list of emails from sender

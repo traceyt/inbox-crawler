@@ -10,15 +10,17 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical" Name="loginView" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Click="LoginButton_Click" Content="Login"  Background="CornflowerBlue" Foreground="White" FontSize="36" Padding="20"/>
+            <Button Click="LoginButton_Click" Content="Login"  Background="CornflowerBlue" Foreground="White" FontSize="12" Padding="20"/>
         </StackPanel>
 
+        <ProgressRing Name="loadingView" Visibility="Collapsed" IsActive="True" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
         <ListView x:Name="mailListView" 
+                  Visibility="Collapsed"
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Top" 
                   Margin="10,64,0,0"
                   ItemsSource="{Binding}"
-                  Visibility="Collapsed"
                   ItemClick="mailListView_ItemClick"
                   IsItemClickEnabled="True">
             <ListView.ItemTemplate>
@@ -41,6 +43,41 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        
+
+        <!-- Mananges view states between Login and displaying Email Groups -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="DefaultLayout">
+                    <!-- XAML defines the default layout for logging in -->
+                </VisualState>
+                <VisualState x:Name="Loading">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="loginView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="Collapsed" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="loadingView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="Visible" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="mailListView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="Collapsed" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Emails">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="loginView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="Collapsed" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="loadingView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="Collapsed" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="mailListView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame Value="Visible" KeyTime="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
     </Grid>
 </Page>
