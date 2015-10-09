@@ -46,7 +46,7 @@ namespace DeClutter
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             // Show loading spinner
-            VisualStateManager.GoToState(this, "Loading", false);
+            VisualStateManager.GoToState(this, "LoadingState", false);
 
             // Initiate login popup
             var result = await EmailReader.Instance().AuthenticateOutlookClientAsync("Mail");
@@ -76,7 +76,7 @@ namespace DeClutter
                 mailListView.DataContext = groupEmails;
 
                 // Display List View
-                VisualStateManager.GoToState(this, "Emails", false);
+                VisualStateManager.GoToState(this, "EmailState", false);
             }
             else
             {

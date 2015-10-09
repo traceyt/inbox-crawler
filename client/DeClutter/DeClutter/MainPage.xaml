@@ -50,7 +50,7 @@
                 <VisualState x:Name="DefaultLayout">
                     <!-- XAML defines the default layout for logging in -->
                 </VisualState>
-                <VisualState x:Name="Loading">
+                <VisualState x:Name="LoadingState">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="loginView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame Value="Collapsed" KeyTime="0"/>
@@ -63,7 +63,7 @@
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
-                <VisualState x:Name="Emails">
+                <VisualState x:Name="EmailState">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="loginView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame Value="Collapsed" KeyTime="0"/>
