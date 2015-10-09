@@ -1,4 +1,5 @@
-﻿using DeclutterLibrary;
+﻿using DeClutter.Helper;
+using DeclutterLibrary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,35 +27,36 @@ namespace DeClutter
     /// </summary>
     public sealed partial class DetailPage : Page
     {
-        IEnumerable<Message> Emails;
+        IEnumerable<Message> emails;
 
         public DetailPage()
         {
             this.InitializeComponent();
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            //Message message = e.Parameter as Message;
+            
+            // Handle navigation parameter object
             String email = e.Parameter as String;
-            Debug.WriteLine("show detail: {0}", email); // message.Subject
+            Debug.WriteLine("Detail page: {0}", email);
 
-            //messageBox.Text = email; // message.Subject;
-
+            // Update page title
             pageTitle.Text = email;
 
-            await getEmails(email);
+            GetEmails(email);
         }
 
-        private async Task getEmails(string email)
+        private async void GetEmails(string email)
         {
-            Emails = await EmailReader.Instance().GetEmailMessagesBySenderAsync(email);
+            emails = await EmailReader.Instance().GetEmailMessagesBySenderAsync(email);
 
-            mailListView.DataContext = Emails;
+            // Bind emails to ListView
+            mailListView.DataContext = emails;
         }
 
-        private void Button_Click_Back(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.Frame.CanGoBack)
             {
@@ -63,6 +66,26 @@ namespace DeClutter
             {
                 Debug.WriteLine("Error. Can't go back!");
             }
+        }
+
+        private async void AppBarButtonMove_Click(object sender, RoutedEventArgs e)
+        {
+            await Alert.Show("Move emails to folder not implemented");
+        }
+
+        private async void AppBarButtonNew_Click(object sender, RoutedEventArgs e)
+        {
+            await Alert.Show("Move emails into new folder not implemented");
+        }
+
+        private async void AppBarButtonRead_Click(object sender, RoutedEventArgs e)
+        {
+            await Alert.Show("Mark emails as read not implemented");
+        }
+
+        private async void AppBarButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            await Alert.Show("Delete emails not implemented");
         }
     }
 }

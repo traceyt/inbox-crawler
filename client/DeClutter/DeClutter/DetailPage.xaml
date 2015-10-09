@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!-- Margin="39,59,39,0" left,top,right,bottom  Visibility="Collapsed" -->
-            <Button x:Name="backButton" Margin="39,59,0,0" Click="Button_Click_Back" 
+            <Button x:Name="backButton" Margin="39,59,0,0" Click="BackButton_Click" 
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
@@ -40,7 +40,6 @@
                   VerticalAlignment="Top" 
                   Margin="0,0,0,0"
                   ItemsSource="{Binding}">
-            <!-- Binding Path=Subject  Binding Path=Sender.EmailAddress.Address -->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Background="White" BorderBrush="Gray" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch">
@@ -59,4 +58,14 @@
         </ListView>
         
     </Grid>
+
+    <!-- App Bar -->
+    <Page.BottomAppBar>
+        <CommandBar Background="{StaticResource ApplicationForegroundThemeBrush}" RequestedTheme="Dark" IsOpen="True" IsSticky="True">
+            <AppBarButton Label="move" Icon="MoveToFolder" Click="AppBarButtonMove_Click" />
+            <AppBarButton Label="folder" Icon="NewFolder" Click="AppBarButtonNew_Click" />
+            <AppBarButton Label="mark as read" Icon="Read" Click="AppBarButtonRead_Click" />
+            <AppBarButton Label="shred" Icon="Clear" Click="AppBarButtonDelete_Click" />
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

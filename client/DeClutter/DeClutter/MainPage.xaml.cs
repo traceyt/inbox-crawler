@@ -1,4 +1,5 @@
-﻿using DeclutterLibrary;
+﻿using DeClutter.Helper;
+using DeclutterLibrary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,15 +25,20 @@ namespace DeClutter
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        //IEnumerable<Message> Emails;
-        IEnumerable<KeyValuePair<string,int>> GroupEmails;
-        API api;
+        private EmailReader emailReader; // API api;
+        private IEnumerable<KeyValuePair<string,int>> groupEmails; //IEnumerable<Message> Emails;
+
         private string postAuthPage;
 
         public MainPage()
         {
             this.InitializeComponent();
-            api = new API();
+
+            // Init emailReader
+            if (emailReader == null)
+            {
+                EmailReader emailReader = new EmailReader();
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -43,23 +49,28 @@ namespace DeClutter
             }
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {            
-            EmailReader emailReader = new EmailReader();
-            var res = await EmailReader.Instance().AuthenticateOutlookClientAsync("Mail");
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Initiate login popup
+            var result = await EmailReader.Instance().AuthenticateOutlookClientAsync("Mail");
 
-            // Emails = await a.GetEmailMessagesAsync(1, 100);
-            //Emails = await api.getDataAsync();
-            GroupEmails = await EmailReader.Instance().GroupEmailsBySenderAsync();
-            UpdateView();
+            if (result)
+            {
+                groupEmails = await EmailReader.Instance().GroupEmailsBySenderAsync();
+                UpdateView();
+            }
+            else
+            {
+                await Alert.Error("Opps, could not signin. Please try again");
+            }
         }
 
         private void UpdateView()
         {
-            // update view
-            mailListView.DataContext = GroupEmails; //Emails;
+            // Populate ListView with grouped emails
+            mailListView.DataContext = groupEmails;
 
-            // switch to list view
+            // Display List View
             loginView.Visibility = Visibility.Collapsed;
             mailListView.Visibility = Visibility.Visible;
 
@@ -72,11 +83,11 @@ namespace DeClutter
 
         private void mailListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //Message obj = e.ClickedItem as Message;
-            KeyValuePair<string, int>? kv = e.ClickedItem as KeyValuePair<string, int>?;
+            // Get email value from selected list item object
+            KeyValuePair<string, int>? kvp = e.ClickedItem as KeyValuePair<string, int>?; //Message obj = e.ClickedItem as Message;
+            string email = kvp.Value.Key;
 
-            string email = kv.Value.Key;
-
+            // Navigate to Detail Page and show list of emails from sender
             this.Frame.Navigate(typeof(DetailPage), email);
         }
     }
