@@ -14,20 +14,25 @@
         </StackPanel>
 
         <ListView x:Name="mailListView" 
-                  HorizontalAlignment="Left" 
+                  HorizontalAlignment="Stretch" 
                   VerticalAlignment="Top" 
                   Margin="10,64,0,0"
                   ItemsSource="{Binding}"
                   Visibility="Collapsed"
                   ItemClick="mailListView_ItemClick"
                   IsItemClickEnabled="True">
+            <!-- Binding Path=Subject  Binding Path=Sender.EmailAddress.Address -->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Background="White" BorderBrush="Gray" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch">
-                        <StackPanel Orientation="Vertical" Padding="0,20,0,20">
-                            <TextBlock Text="{Binding Path=Subject}" Style="{ThemeResource TitleTextBlockStyle}" />
-                            <TextBlock Text="{Binding Path=Sender.EmailAddress.Address}" Style="{ThemeResource SubtitleTextBlockStyle}" Foreground="Gray" />
-                        </StackPanel>
+                        <Grid Padding="0,20,0,20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Path=Value}" Style="{ThemeResource TitleTextBlockStyle}" Foreground="Black" Margin="20,0,20,0" />
+                            <TextBlock Grid.Column="1" Text="{Binding Path=Key}" Style="{ThemeResource TitleTextBlockStyle}" Foreground="Gray" />
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>

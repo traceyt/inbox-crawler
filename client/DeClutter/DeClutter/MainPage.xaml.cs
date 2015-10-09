@@ -29,21 +29,33 @@ namespace DeClutter
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        IEnumerable<Message> Emails;
+        //IEnumerable<Message> Emails;
+        IEnumerable<KeyValuePair<string,int>> GroupEmails;
         API api;
+        private string postAuthPage;
+
         public MainPage()
         {
             this.InitializeComponent();
             api = new API();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null && e.Parameter is string && !string.IsNullOrWhiteSpace(e.Parameter as string))
+            {
+                postAuthPage = e.Parameter as string;
+            }
+        }
+
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            EmailReader a = new EmailReader();
-            var res = await a.AuthenticateOutlookClientAsync("Mail");
+            EmailReader emailReader = new EmailReader();
+            var res = await emailReader.AuthenticateOutlookClientAsync("Mail");
 
-           // Emails = await a.GetEmailMessagesAsync(1, 100);
-            Emails = await api.getDataAsync();
+            // Emails = await a.GetEmailMessagesAsync(1, 100);
+            //Emails = await api.getDataAsync();
+            GroupEmails = await emailReader.GroupEmailsBySenderAsync();
             UpdateView();
         }
 
@@ -56,17 +68,27 @@ namespace DeClutter
         private void UpdateView()
         {
             // update view
-            mailListView.DataContext = Emails;
+            mailListView.DataContext = GroupEmails; //Emails;
 
             // switch to list view
             loginView.Visibility = Visibility.Collapsed;
             mailListView.Visibility = Visibility.Visible;
+
+            if (postAuthPage == "cloud")
+            {
+                this.Frame.Navigate(typeof(Visualizer));
+                return;
+            }
         }
 
         private void mailListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Message obj = e.ClickedItem as Message;
-            this.Frame.Navigate(typeof(DetailPage), obj);
+            //Message obj = e.ClickedItem as Message;
+            KeyValuePair<string, int>? kv = e.ClickedItem as KeyValuePair<string, int>?;
+
+            string email = kv.Value.Key;
+
+            this.Frame.Navigate(typeof(DetailPage), email);
         }
     }
 }

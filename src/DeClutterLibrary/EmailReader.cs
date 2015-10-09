@@ -175,9 +175,43 @@ namespace DeclutterLibrary
                 pageCounter++;
             }
 
-            return dictionary.AsEnumerable();
+            var items = from pair in dictionary
+                        orderby pair.Value descending
+                        select pair;
+
+            return items.AsEnumerable();
 
         }
+        public IAsyncOperation<IEnumerable<Message>> GetEmailMessagesBySenderAsync(string sender)
+        {
+            return GetEmailMessagesBySenderInternalAsync(sender).AsAsyncOperation<IEnumerable<Message>>();
+        }
 
+        internal async Task<IEnumerable<Message>> GetEmailMessagesBySenderInternalAsync(string sender)
+        {
+            var mailResults = await _outLookClient.Me.Folders.GetById("Inbox").Messages.
+                Where(i => i.Sender.EmailAddress.Address == sender).ExecuteAsync();
+
+           List<Message> emailList = new List<Message>();
+
+            foreach (var message in mailResults.CurrentPage)
+            {
+                emailList.Add(new Message
+                {
+                    ID = message.Id,
+                    To = message.ToRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
+                    Cc = message.CcRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
+                    Bcc = message.BccRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
+                    Subject = message.Subject,
+                    Sender = new Address
+                    {
+                        EmailAddress = new EmailAddress { Address = message.Sender.EmailAddress.Address, Name = message.Sender.EmailAddress.Name }
+                    },
+                    DateTimeReceived = message.DateTimeReceived == null ? DateTimeOffset.MinValue : message.DateTimeReceived.Value
+                });
+            }
+
+            return emailList;
+        }
     }
 }

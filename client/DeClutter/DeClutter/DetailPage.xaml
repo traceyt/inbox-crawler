@@ -34,8 +34,32 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="39,0,30,40"/>
         </Grid>
 
-
+<!--
         <TextBlock Grid.Row="1" Name="messageBox" Text="Loading message" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        -->
+
+        <ListView x:Name="mailListView" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Top" 
+                  Margin="10,64,0,0"
+                  ItemsSource="{Binding}">
+            <!-- Binding Path=Subject  Binding Path=Sender.EmailAddress.Address -->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="White" BorderBrush="Gray" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical" Padding="0,20,0,20">
+                            <TextBlock Text="{Binding Path=Subject}" Style="{ThemeResource TitleTextBlockStyle}" Foreground="Black" Margin="20,0,20,0" />
+                            <TextBlock Text="{Binding Path=Sender.EmailAddress.Address}" Foreground="Gray" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
         
     </Grid>
 </Page>

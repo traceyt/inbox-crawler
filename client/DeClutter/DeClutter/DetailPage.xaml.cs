@@ -24,6 +24,8 @@ namespace DeClutter
     /// </summary>
     public sealed partial class DetailPage : Page
     {
+        IEnumerable<Message> Emails;
+
         public DetailPage()
         {
             this.InitializeComponent();
@@ -32,10 +34,21 @@ namespace DeClutter
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Message message = e.Parameter as Message;
-            Debug.WriteLine("show detail: {0}", message.Subject);
+            //Message message = e.Parameter as Message;
+            String email = e.Parameter as String;
+            Debug.WriteLine("show detail: {0}", email); // message.Subject
 
-            messageBox.Text = message.Subject;
+            //messageBox.Text = email; // message.Subject;
+
+            getEmails(email);
+        }
+
+        private async void getEmails(string email)
+        {
+            EmailReader emailReader = new EmailReader();
+            Emails = await emailReader.GetEmailMessagesBySenderAsync(email);
+
+            mailListView.DataContext = Emails;
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)
