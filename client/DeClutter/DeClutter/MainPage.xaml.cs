@@ -1,12 +1,17 @@
 ﻿using DeclutterLibrary;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.Office365.Discovery;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Security.Authentication.Web;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -40,6 +45,12 @@ namespace DeClutter
            // Emails = await a.GetEmailMessagesAsync(1, 100);
             Emails = await api.getDataAsync();
             UpdateView();
+        }
+
+        private async void Button_Logout_Click(object sender, RoutedEventArgs e)
+        {
+            EmailReader a = new EmailReader();
+            var res = await a.CreateOutlookClientLogoutAsync("Mail");
         }
 
         private void UpdateView()
