@@ -41,6 +41,8 @@ namespace DeClutter
 
             //messageBox.Text = email; // message.Subject;
 
+            pageTitle.Text = email;
+
             await getEmails(email);
         }
 

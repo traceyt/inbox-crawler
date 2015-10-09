@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- Back button and page title (windows 8 only) -->
+        <!-- Back button and page title (windows store only) -->
         <Grid Grid.Row="0" Background="{StaticResource ApplicationForegroundThemeBrush}" RequestedTheme="Dark" Height="140" Name="header">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -29,19 +29,16 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <!-- Margin="0,0,30,40" -->
-            <TextBlock x:Name="pageTitle" Text="Detail View" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+            <TextBlock x:Name="pageTitle" Text="" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="39,0,30,40"/>
         </Grid>
 
-<!--
-        <TextBlock Grid.Row="1" Name="messageBox" Text="Loading message" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        -->
-
-        <ListView x:Name="mailListView" 
+        <!-- Main View -->
+        <ListView Grid.Row="1"
+                  x:Name="mailListView" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Top" 
-                  Margin="10,64,0,0"
+                  Margin="0,0,0,0"
                   ItemsSource="{Binding}">
             <!-- Binding Path=Subject  Binding Path=Sender.EmailAddress.Address -->
             <ListView.ItemTemplate>
