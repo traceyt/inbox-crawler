@@ -44,13 +44,13 @@ namespace DeClutter
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             EmailReader emailReader = new EmailReader();
-            var res = await emailReader.AuthenticateOutlookClientAsync("Mail");
+            var res = await EmailReader.Instance().AuthenticateOutlookClientAsync("Mail");
 
             // Emails = await a.GetEmailMessagesAsync(1, 100);
             //Emails = await api.getDataAsync();
-            GroupEmails = await emailReader.GroupEmailsBySenderAsync();
+            GroupEmails = await EmailReader.Instance().GroupEmailsBySenderAsync();
             UpdateView();
         }
 

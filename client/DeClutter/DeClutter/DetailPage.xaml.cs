@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -31,7 +32,7 @@ namespace DeClutter
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             //Message message = e.Parameter as Message;
@@ -40,13 +41,12 @@ namespace DeClutter
 
             //messageBox.Text = email; // message.Subject;
 
-            getEmails(email);
+            await getEmails(email);
         }
 
-        private async void getEmails(string email)
+        private async Task getEmails(string email)
         {
-            EmailReader emailReader = new EmailReader();
-            Emails = await emailReader.GetEmailMessagesBySenderAsync(email);
+            Emails = await EmailReader.Instance().GetEmailMessagesBySenderAsync(email);
 
             mailListView.DataContext = Emails;
         }
