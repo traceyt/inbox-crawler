@@ -29,6 +29,8 @@ namespace DeclutterLibrary
 
         private OutlookServicesClient _outLookClient;
 
+        private static EmailReader _instance = null;
+
         private static string LastAuthority
         {
             get
@@ -47,7 +49,15 @@ namespace DeclutterLibrary
                 _settings.Values["LastAuthority"] = value;
             }
         }
+        public static EmailReader Instance()
+        {
+            if(_instance == null)
+            {
+                _instance = new EmailReader();
+            }
 
+            return _instance;
+        }
         public IAsyncOperation<bool> AuthenticateOutlookClientAsync(string capability)
         {
             return CreateOutlookClientAsyncInternal(capability).AsAsyncOperation<bool>();
@@ -189,29 +199,36 @@ namespace DeclutterLibrary
 
         internal async Task<IEnumerable<Message>> GetEmailMessagesBySenderInternalAsync(string sender)
         {
-            var mailResults = await _outLookClient.Me.Folders.GetById("Inbox").Messages.
-                Where(i => i.Sender.EmailAddress.Address == sender).ExecuteAsync();
+            try {
+                
+                var mailResults = await _outLookClient.Me.Folders.GetById("Inbox").Messages
+                    .Where(i => i.Sender.EmailAddress.Address == sender).ExecuteAsync();
 
-           List<Message> emailList = new List<Message>();
+                List<Message> emailList = new List<Message>();
 
-            foreach (var message in mailResults.CurrentPage)
-            {
-                emailList.Add(new Message
+                foreach (var message in mailResults.CurrentPage)
                 {
-                    ID = message.Id,
-                    To = message.ToRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
-                    Cc = message.CcRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
-                    Bcc = message.BccRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
-                    Subject = message.Subject,
-                    Sender = new Address
+                    emailList.Add(new Message
                     {
-                        EmailAddress = new EmailAddress { Address = message.Sender.EmailAddress.Address, Name = message.Sender.EmailAddress.Name }
-                    },
-                    DateTimeReceived = message.DateTimeReceived == null ? DateTimeOffset.MinValue : message.DateTimeReceived.Value
-                });
-            }
+                        ID = message.Id,
+                        To = message.ToRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
+                        Cc = message.CcRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
+                        Bcc = message.BccRecipients.Select(r => new Address { EmailAddress = new EmailAddress { Address = r.EmailAddress.Address, Name = r.EmailAddress.Name } }).ToArray(),
+                        Subject = message.Subject,
+                        Sender = new Address
+                        {
+                            EmailAddress = new EmailAddress { Address = message.Sender.EmailAddress.Address, Name = message.Sender.EmailAddress.Name }
+                        },
+                        DateTimeReceived = message.DateTimeReceived == null ? DateTimeOffset.MinValue : message.DateTimeReceived.Value
+                    });
+                }
+                return emailList;
 
-            return emailList;
+            } catch (Exception ex)
+            {
+                return null;
+            }
+            
         }
     }
 }

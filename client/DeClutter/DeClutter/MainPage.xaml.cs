@@ -1,17 +1,13 @@
-﻿using DeclutterLibrary;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
-using Microsoft.Office365.Discovery;
+﻿using DeClutter.Helper;
+using DeclutterLibrary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.Security.Authentication.Web;
-using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,15 +25,14 @@ namespace DeClutter
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        //IEnumerable<Message> Emails;
-        IEnumerable<KeyValuePair<string,int>> GroupEmails;
-        API api;
+        private EmailReader emailReader = new EmailReader();
+        private IEnumerable<KeyValuePair<string,int>> groupEmails;
+
         private string postAuthPage;
 
         public MainPage()
         {
             this.InitializeComponent();
-            api = new API();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -48,46 +43,54 @@ namespace DeClutter
             }
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            EmailReader emailReader = new EmailReader();
-            var res = await emailReader.AuthenticateOutlookClientAsync("Mail");
+            // Show loading spinner
+            VisualStateManager.GoToState(this, "LoadingState", false);
 
-            // Emails = await a.GetEmailMessagesAsync(1, 100);
-            //Emails = await api.getDataAsync();
-            GroupEmails = await emailReader.GroupEmailsBySenderAsync();
-            UpdateView();
+            // Initiate login popup
+            var result = await EmailReader.Instance().AuthenticateOutlookClientAsync("Mail");
+
+            if (result)
+            {
+                groupEmails = await EmailReader.Instance().GroupEmailsBySenderAsync();
+                UpdateView();
+            }
+            else
+            {
+                await Alert.Error("Opps, could not signin. Please try again");
+            }
         }
 
-        private async void Button_Logout_Click(object sender, RoutedEventArgs e)
+        private async void UpdateView()
         {
-            EmailReader a = new EmailReader();
-            var res = await a.CreateOutlookClientLogoutAsync("Mail");
-        }
-
-        private void UpdateView()
-        {
-            // update view
-            mailListView.DataContext = GroupEmails; //Emails;
-
-            // switch to list view
-            loginView.Visibility = Visibility.Collapsed;
-            mailListView.Visibility = Visibility.Visible;
-
             if (postAuthPage == "cloud")
             {
                 this.Frame.Navigate(typeof(Visualizer));
                 return;
             }
+
+            if(groupEmails != null)
+            {
+                // Populate ListView with grouped emails
+                mailListView.DataContext = groupEmails;
+
+                // Display List View
+                VisualStateManager.GoToState(this, "EmailState", false);
+            }
+            else
+            {
+                await Alert.Error("No emails found");
+            }
         }
 
         private void mailListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //Message obj = e.ClickedItem as Message;
-            KeyValuePair<string, int>? kv = e.ClickedItem as KeyValuePair<string, int>?;
+            // Get email value from selected list item object
+            KeyValuePair<string, int>? kvp = e.ClickedItem as KeyValuePair<string, int>?;
+            string email = kvp.Value.Key;
 
-            string email = kv.Value.Key;
-
+            // Navigate to Detail Page and show list of emails from sender
             this.Frame.Navigate(typeof(DetailPage), email);
         }
     }
