@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DeClutter2</title>
+
+
+    <!-- WinJS references -->
+    <link href="WinJS/css/ui-dark.css" rel="stylesheet" />
+    <script src="WinJS/js/base.js"></script>
+    <script src="WinJS/js/ui.js"></script>
+
+    <!-- include react -->
+    <script src="bower_components/babel-polyfill/browser.js"></script>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/react/react-dom.js"></script>
+
+    <!-- DeClutter2 references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+</head>
+
+<body class="win-type-body">
+    <div id="example"><p>this is a paragraph</p></div>
+
+    <script type="text/babel">
+        ReactDOM.render(
+            <h1>Hello World</h1>,
+        document.getElementById('example')
+        );
+
+
+    </script>
+
+</body>
+</html>
