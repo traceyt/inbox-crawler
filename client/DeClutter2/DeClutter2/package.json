@@ -1,0 +1,24 @@
+{
+  "name": "DeClutter2",
+  "version": "1.0.0",
+  "description": "Declutter Client App",
+  "main": "default.js",
+  "dependencies": {},
+  "devDependencies": {
+    "adal-node": "^0.1.17",
+    "browserify": "^11.2.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "jquery": "^2.1.4",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "reactify": "^1.1.1"
+  },
+  "scripts": {
+    "build": "browserify -t reactify src/default.js -o bundle.js --debug",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tracey Trewin",
+  "license": "ISC"
+}

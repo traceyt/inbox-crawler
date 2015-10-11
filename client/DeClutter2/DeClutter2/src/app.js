@@ -1,6 +1,4 @@
-﻿// For an introduction to the Blank template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkId=232509
-(function () {
+﻿(function () {
 	"use strict";
 
 	var app = WinJS.Application;
@@ -26,7 +24,7 @@
 
 	app.start();
 
-    
-	var emailReader = new DeclutterLibrary.EmailReader();
+    // email is AllieB@oauthplay.onmicrosoft.com
+    // password is Pastries101
 
 })();
