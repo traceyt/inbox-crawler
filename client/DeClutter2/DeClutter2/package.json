@@ -2,8 +2,8 @@
   "name": "DeClutter2",
   "version": "1.0.0",
   "description": "Declutter Client App",
-  "main": "default.js",
-  "dependencies": {},
+  "main": "bundle.js",
+  "dependencies": { },
   "devDependencies": {
     "adal-node": "^0.1.17",
     "browserify": "^11.2.0",

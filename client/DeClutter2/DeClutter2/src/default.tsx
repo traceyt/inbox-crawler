@@ -2,6 +2,7 @@
 // for more information see the following page on the TypeScript wiki:
 // https://github.com/Microsoft/TypeScript/wiki/JSX
 /// reference path='../typings/winjs/winjs.d.ts' />
+/// reference path='../typings/DeClutterTSHelper.d.ts />
 
 (function () {
     "use strict";
@@ -35,6 +36,7 @@
     var React = require('react');
     var ReactDOM = require('react-dom');
     var $ = require('jquery');
+    var Adal = require('adal-node');
 
     $(document).ready(function () {
         $('body').css('background', 'pink');
@@ -48,6 +50,39 @@
         })
 
         ReactDOM.render(<HelloWorld />, document.getElementById('content'));
+
+        //var emailReader = new DeclutterLibrary.EmailReader().AuthenticateOutlookClientAsync("Mail");
+
+        //var xhr = new XMLHttpRequest();
+        //xhr.onreadystatechange = function () {
+        //    if (xhr.readyState == 4) {
+        //        alert(xhr.responseText);
+        //    }
+        //    xhr.open('GET', 'https://graph.microsoft.com/beta/me/Messages', true);
+        //    xhr.send(null);
+        //};
+
+        var AuthenticationContext = Adal.AuthenticationContext;
+
+        var sampleParameters = {
+                tenant: 'trewin.onmicrosoft.com',
+                authorityHostUrl: 'https://login.windows.net',
+                clientId: '03f99888-2494-4e18-b6e0-041eaa6c0c82',
+                username: 'tracey',
+                password: 'Fanny100'
+        };
+
+        var authorityUrl = sampleParameters.authorityHostUrl + '/' + sampleParameters.tenant;
+        var context = new AuthenticationContext(authorityUrl);
+        var resource = '00000002-0000-0000-c000-000000000000';
+        context.acquireTokenWithUsernamePassword(resource, sampleParameters.username, sampleParameters.password, sampleParameters.clientId, function (err, tokenResponse) {
+            if (err) {
+                console.log('well that didn\'t work: ' + err.stack);
+            } else {
+                console.log(tokenResponse);
+            }
+        });
+
 
     });
 })();
