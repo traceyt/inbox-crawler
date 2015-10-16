@@ -36,7 +36,7 @@
     var React = require('react');
     var ReactDOM = require('react-dom');
     var $ = require('jquery');
-    var Adal = require('adal-node');
+    var Adal = require('./adal.js');
 
     $(document).ready(function () {
         $('body').css('background', 'pink');
@@ -61,29 +61,41 @@
         //    xhr.open('GET', 'https://graph.microsoft.com/beta/me/Messages', true);
         //    xhr.send(null);
         //};
-
-        var AuthenticationContext = Adal.AuthenticationContext;
-
-        var sampleParameters = {
+ //       * Config information
+ //       * @public
+ //      @class Config
+ //      @property { tenant } Your target tenant
+ //      @property { clientId } Identifier assigned to your app by Azure Active Directory
+ //      @property { redirectUri } Endpoint at which you expect to receive tokens
+ //      @property { instance } Azure Active Directory Instance(default:https://login.microsoftonline.com/)
+ //      @property { endpoints } Collection of {Endpoint - ResourceId } used for autmatically attaching tokens in webApi calls
+ //        
+        var config = {
                 tenant: 'trewin.onmicrosoft.com',
-                authorityHostUrl: 'https://login.windows.net',
                 clientId: '03f99888-2494-4e18-b6e0-041eaa6c0c82',
-                username: 'tracey',
-                password: 'Fanny100'
+                instance: 'https://login.windows.net',
+                redirectUri: 'http://localhost:3000/getAToken'
         };
 
-        var authorityUrl = sampleParameters.authorityHostUrl + '/' + sampleParameters.tenant;
-        var context = new AuthenticationContext(authorityUrl);
-        var resource = '00000002-0000-0000-c000-000000000000';
-        context.acquireTokenWithUsernamePassword(resource, sampleParameters.username, sampleParameters.password, sampleParameters.clientId, function (err, tokenResponse) {
-            if (err) {
-                console.log('well that didn\'t work: ' + err.stack);
-            } else {
-                console.log(tokenResponse);
-            }
-        });
+        Adal.inject(config);
 
+        var auth = new Adal.inject(config);
 
+        auth.callback = function (result) {
+            console.log(result);
+        };
+        auth.login();
+
+        //var authorityUrl = config.authorityHostUrl + '/' + sampleParameters.tenant;
+        //var context = new AuthenticationContext(authorityUrl);
+        //var resource = '00000002-0000-0000-c000-000000000000';
+        //context.acquireTokenWithUsernamePassword(resource, sampleParameters.username, sampleParameters.password, sampleParameters.clientId, function (err, tokenResponse) {
+        //    if (err) {
+        //        console.log('well that didn\'t work: ' + err.stack);
+        //    } else {
+        //        console.log(tokenResponse);
+        //    }
+        //});
     });
 })();
 

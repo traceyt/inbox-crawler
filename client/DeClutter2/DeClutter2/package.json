@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Declutter Client App",
   "main": "bundle.js",
-  "dependencies": { },
+  "dependencies": {
+  },
   "devDependencies": {
     "adal-node": "^0.1.17",
     "browserify": "^11.2.0",
@@ -15,9 +16,23 @@
     "react-dom": "^0.14.0",
     "reactify": "^1.1.1"
   },
-  "scripts": {
-    "build": "browserify -t reactify src/default.js -o bundle.js --debug",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "browserify": {
+    "libs": {
+      "options": {
+        "shim": {
+          "jquery": {
+            "path": "../node_modules/jquery",
+            "exports": "$"
+          }
+        }
+      },
+      "src": "['./libs/*.js']",
+      "dest": "'./libs.js'"
+    }
+  },
+    "scripts": {
+      "build": "browserify -t reactify src/default.js -o bundle.js --debug",
+      "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tracey Trewin",
   "license": "ISC"
