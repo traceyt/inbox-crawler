@@ -15,11 +15,12 @@ declare module DeclutterLibrary {
 	}
 
     class EmailReader {
-        Instance(): any;
-        AuthenticateOutlookClientAsync(capability:string): any;
-        GetEmailMessagesAsync(pageNo: number): any;
-        GetEmailMessagesBySenderAsync(sender: string): any;
-        GroupEmailsBySenderAsync(): any;
+        static instance(): EmailReader;
+        clientID: string;
+        authenticateOutlookClientAsync(capability:string): any;
+        getEmailMessagesAsync(pageNo: number): any;
+        getEmailMessagesBySenderAsync(sender: string): any;
+        groupEmailsBySenderAsync(): any;
 	}
 
 	class Folder {

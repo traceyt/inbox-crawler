@@ -1,52 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package
-  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
-
-  <Identity
-    Name="7cbf3485-a617-4961-80dc-4358c0c05aa5"
-    Version="1.0.0.0"
-    Publisher="CN=traceyt" />
-
-  <mp:PhoneIdentity PhoneProductId="7cbf3485-a617-4961-80dc-4358c0c05aa5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="22626Tru-Insights.CleanMeUp" Version="1.1.0.0" Publisher="CN=E09EC3A3-542B-4AF6-9B6A-B2B72F9325D2" />
+  <mp:PhoneIdentity PhoneProductId="7cbf3485-a617-4961-80dc-4358c0c05aa5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>DeClutter2</DisplayName>
-    <PublisherDisplayName>traceyt</PublisherDisplayName>
+    <DisplayName>CleanMeUp</DisplayName>
+    <PublisherDisplayName>Tru-Insights</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
-
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
-
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application 
-      Id="App"
-      StartPage="default.html">
-
-      <uap:VisualElements
-        DisplayName="DeClutter2"
-        Description="DeClutter2"
-        BackgroundColor="transparent"
-        Square150x150Logo="images\Square150x150Logo.png"
-        Square44x44Logo="images\Square44x44Logo.png">
-
-        <uap:DefaultTile Wide310x150Logo="images\Wide310x150Logo.png"/>
+    <Application Id="App" StartPage="default.html">
+      <uap:VisualElements DisplayName="CleanMeUp" Description="DeClutter2" BackgroundColor="transparent" Square150x150Logo="images\Square150x150Logo.png" Square44x44Logo="images\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="images\Wide310x150Logo.png">
+        </uap:DefaultTile>
         <uap:SplashScreen Image="images\splashscreen.png" />
-
       </uap:VisualElements>
+      <uap:ApplicationContentUriRules>
+        <uap:Rule Match="https://login.microsoftonline.com" Type="include" WindowsRuntimeAccess="all" />
+        <uap:Rule Match="https://msft.sts.microsoft.com" Type="include" WindowsRuntimeAccess="all" />
+        <uap:Rule Match="https://login.windows.net" Type="include" WindowsRuntimeAccess="all" />
+        <uap:Rule Match="http://localhost:3030/oauth2Callback" Type="include" WindowsRuntimeAccess="all" />
+        <uap:Rule Match="https://login.microsoftonline.com/trewin.onmicrosoft.com/login" Type="include" WindowsRuntimeAccess="all" />
+      </uap:ApplicationContentUriRules>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="internetClientServer" />
+    <uap:Capability Name="sharedUserCertificates" />
+    <uap:Capability Name="userAccountInformation" />
+    <uap:Capability Name="enterpriseAuthentication" />
   </Capabilities>
-
 </Package>

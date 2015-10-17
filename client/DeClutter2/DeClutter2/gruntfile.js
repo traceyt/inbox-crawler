@@ -1,6 +1,36 @@
-﻿module.exports = function(grunt) {
+﻿/// <binding AfterBuild='build' />
+module.exports = function(grunt) {
 
-  grunt.initConfig({
+    grunt.initConfig({
+        browserify: {
+        libs: {
+            files: [{
+                src: [],
+                dest: 'modules.js',
+                options: {
+                    require: { jquery: 'jquery' },
+                    browserifyOptions: {
+                        debug: true,
+                    },
+                },
+            }],
+        },
+        client: {
+            files: [{
+                src: ['src/default.js'],
+                dest: './app.js',
+                options: {
+                    browserifyOptions: {
+                        debug: true,
+                    },
+                    transform: ['reactify']
+                },
+            }],
+        }
+    },
+    concat: {
+        'bundle.js' : ['modules.js', 'app.js']
+    } ,
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'components/**/*.js','test/**/*.js'],
       options: {
@@ -28,7 +58,10 @@
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   grunt.registerTask('default', ['jshint', 'jsbeautify']);
-
+  grunt.registerTask('build', ['browserify', 'concat']);
+  grunt.registerTask('debug', ['browserify']);
 };

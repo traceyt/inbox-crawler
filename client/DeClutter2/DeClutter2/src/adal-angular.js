@@ -1,4 +1,4 @@
-﻿//----------------------------------------------------------------------
+//----------------------------------------------------------------------
 // AdalJS v1.0.6
 // @preserve Copyright (c) Microsoft Open Technologies, Inc.
 // All Rights Reserved
@@ -336,4 +336,5 @@ if (typeof module !== 'undefined' && module.exports) {
         console.error('Angular.JS is not included');
     }
 }());
+
 
