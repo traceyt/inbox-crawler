@@ -1,32 +1,27 @@
 {
   "author": "Tracey Trewin",
   "browserify": {
+    "transform": ["browserify-shim"],
     "libs": {
-      "options": {
-        "shim": {
-          "jquery": {
-            "path": "../node_modules/jquery",
-            "exports": "$"
-          },
-          "materialize": {
-            "path": "../node_modules/materialize",
-            "exports": "materialize"
-          }
-        }
-      },
+      "options": { },
       "src": "['./libs/*.js']",
       "dest": "'./libs.js'"
     }
   },
   "browser": {
-    "jquery": "./js/jquery.min.js",
-    "materialize": "./js/materialize.js"
+    "jquery": "./js/jquery/jquery.min.js",
+    "materialize": "./js/materialize/materialize.min.js"
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "materialize": "materialize"
   },
   "dependencies": {
-    "adal-node": "^0.1.17",
     "crypto": "0.0.3",
+    "hammerjs": "^2.0.4",
     "jquery": "^2.1.4",
-    "materialize": "^1.0.0"
+    "materialize": "^1.0.0",
+    "pickadate": "^3.5.6"
   },
   "description": "Declutter Client App",
   "devDependencies": {

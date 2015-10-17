@@ -45,10 +45,10 @@
         var callbackURL = 'http://localhost:3030/oauth2Callback';
         //var callbackURL = 'ms-app://S-1-15-2-362237037-3722746685-439561638-2597901564-3613092599-1873846187-518014421';
         var scope = 'https://outlook.office.com/mail.read';
-        var resource = "00000002-0000-0000-c000-000000000000";
+        // var resource = "00000002-0000-0000-c000-000000000000";
         // var resource = "https://outlook.office.com";
         var o = GetNonce();
-        windownLoginURL += clientID + "&redirect_uri=" + callbackURL + "&response_type=code&state=" + o + "&resource=" + resource; // + "&scope=" + scope;
+        windownLoginURL += clientID + "&redirect_uri=" + callbackURL + "&response_type=code&state=" + o + "&scope=" + scope;
         var startURI = new Windows.Foundation.Uri(windownLoginURL);
         var endURI = new Windows.Foundation.Uri(callbackURL);
         authzInProgress = true;
@@ -121,16 +121,16 @@
         });
     }
     $(document).ready(function () {
-        $('body').css('background', 'pink');
-        var HelloWorld = React.createClass({
+        $('body').css('background', 'grey');
+        var CleanMeUpTitle = React.createClass({
             render: function () {
-                return (React.createElement("div", {"className": "HelloWorld"}, React.createElement("h1", null, "Hello World!!")));
+                return (React.createElement("div", {"className": "CleanMeUpTitle"}, React.createElement("h1", null, "Clean Me Up!")));
             }
         });
         document.getElementById('LoginAdal').addEventListener('click', launchWebAuth, false);
         document.getElementById('LoginDeclutterLibrary').addEventListener('click', getEmailReader, false);
         document.getElementById('LoginWebBroker').addEventListener('click', loginOffice, false);
-        ReactDOM.render(React.createElement(HelloWorld, null), document.getElementById('content'));
+        ReactDOM.render(React.createElement(CleanMeUpTitle, null), document.getElementById('content'));
         //var xhr = new XMLHttpRequest();
         //xhr.onreadystatechange = function () {
         //    if (xhr.readyState == 4) {
@@ -160,3 +160,4 @@
         //});
     });
 })();
+//# sourceMappingURL=default.js.map

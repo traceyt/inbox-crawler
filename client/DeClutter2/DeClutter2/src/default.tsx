@@ -56,10 +56,10 @@
         var callbackURL = 'http://localhost:3030/oauth2Callback';
         //var callbackURL = 'ms-app://S-1-15-2-362237037-3722746685-439561638-2597901564-3613092599-1873846187-518014421';
         var scope = 'https://outlook.office.com/mail.read';
-        var resource = "00000002-0000-0000-c000-000000000000";
+        // var resource = "00000002-0000-0000-c000-000000000000";
         // var resource = "https://outlook.office.com";
         var o = GetNonce();
-        windownLoginURL += clientID + "&redirect_uri=" + callbackURL + "&response_type=code&state=" + o + "&resource=" + resource; // + "&scope=" + scope;
+        windownLoginURL += clientID + "&redirect_uri=" + callbackURL + "&response_type=code&state=" + o + "&scope=" + scope;
 
         var startURI = new Windows.Foundation.Uri(windownLoginURL);
         var endURI = new Windows.Foundation.Uri(callbackURL);
@@ -146,12 +146,12 @@
     }
 
     $(document).ready(function () {
-        $('body').css('background', 'pink');
+        $('body').css('background', 'grey');
 
-        var HelloWorld = React.createClass({
+        var CleanMeUpTitle = React.createClass({
             render: function () {
                 return (
-                    <div className="HelloWorld"><h1>Hello World!!</h1></div>
+                    <div className="CleanMeUpTitle"><h1>Clean Me Up!</h1></div>
                 );
             }
         })
@@ -160,7 +160,7 @@
         document.getElementById('LoginDeclutterLibrary').addEventListener('click', getEmailReader, false);
         document.getElementById('LoginWebBroker').addEventListener('click', loginOffice, false);
         
-        ReactDOM.render(<HelloWorld />, document.getElementById('content'));
+        ReactDOM.render(<CleanMeUpTitle />, document.getElementById('content'));
 
         //var xhr = new XMLHttpRequest();
         //xhr.onreadystatechange = function () {

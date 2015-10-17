@@ -4,42 +4,33 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         browserify: {
-        libs: {
-            files: [{
-                src: ["../node_modules"],
-                dest: 'libs.js',
+            libs: {
                 options: {
-                    shim: {
-                        jquery: {
-                            path: "../node_modules/jquery",
-                            exports: "$"
-                        },
-                        materialize: {
-                            path: "../node_modules/materialize",
-                            exports: "materialize"
-                        },
-                    },
-                    debug: true,
+                    require: ['jquery', 'crypto', 'materialize'],
                     transform: ['browserify-shim'],
-                },
+                debug: true
+            },
+            files: [{
+                src: [],
+                dest: 'libs.js',
             }],
         },
         client: {
+            options: {
+                external: ['jquery', 'crypto', 'materialize'],
+                browserifyOptions: {
+                    debug: true,
+                },
+                transform: ['reactify']
+            },
             files: [{
-                external: { jquery: 'jquery', materialize: 'materialize' },
                 src: ['src/default.js'],
                 dest: './app.js',
-                options: {
-                    browserifyOptions: {
-                        debug: true,
-                    },
-                    transform: ['reactify']
-                },
             }],
         }
     },
     concat: {
-        'bundle.js' : ['modules.js', 'app.js']
+        'bundle.js' : ['lib.js', 'app.js']
     } ,
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'components/**/*.js','test/**/*.js'],
@@ -72,6 +63,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   grunt.registerTask('default', ['jshint', 'jsbeautify']);
-  grunt.registerTask('build', ['browserify', 'concat']);
+  grunt.registerTask('build', ['browserify:client']);
   grunt.registerTask('debug', ['browserify']);
 };
