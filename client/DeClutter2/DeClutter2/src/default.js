@@ -1,8 +1,8 @@
 // A '.tsx' file enables JSX support in the TypeScript compiler, 
 // for more information see the following page on the TypeScript wiki:
 // https://github.com/Microsoft/TypeScript/wiki/JSX
-/// reference path='../typings/winjs/winjs.d.ts' />
-/// reference path='../typings/DeClutterTSHelper.d.ts />
+/// reference path='../js/typings/winjs/winjs.d.ts' />
+/// reference path='../js/typings/DeClutterTSHelper.d.ts />
 (function () {
     "use strict";
     var app = WinJS.Application;
@@ -160,4 +160,3 @@
         //});
     });
 })();
-//# sourceMappingURL=default.js.map

@@ -2,21 +2,31 @@
 module.exports = function(grunt) {
 
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
         browserify: {
         libs: {
             files: [{
-                src: [],
-                dest: 'modules.js',
+                src: ["../node_modules"],
+                dest: 'libs.js',
                 options: {
-                    require: { jquery: 'jquery' },
-                    browserifyOptions: {
-                        debug: true,
+                    shim: {
+                        jquery: {
+                            path: "../node_modules/jquery",
+                            exports: "$"
+                        },
+                        materialize: {
+                            path: "../node_modules/materialize",
+                            exports: "materialize"
+                        },
                     },
+                    debug: true,
+                    transform: ['browserify-shim'],
                 },
             }],
         },
         client: {
             files: [{
+                external: { jquery: 'jquery', materialize: 'materialize' },
                 src: ['src/default.js'],
                 dest: './app.js',
                 options: {

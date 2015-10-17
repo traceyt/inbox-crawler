@@ -8,4 +8,3 @@ var HelloWorld = React.createClass({
     }
 });
 module.exports = HelloWorld;
-//# sourceMappingURL=HelloWorld.js.map
