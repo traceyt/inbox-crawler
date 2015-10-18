@@ -26,6 +26,7 @@
         <uap:Rule Match="https://login.windows.net" Type="include" WindowsRuntimeAccess="all" />
         <uap:Rule Match="http://localhost:3030/oauth2Callback" Type="include" WindowsRuntimeAccess="all" />
         <uap:Rule Match="https://login.microsoftonline.com/trewin.onmicrosoft.com/login" Type="include" WindowsRuntimeAccess="all" />
+        <uap:Rule Match="https://microsoft.com" Type="include" WindowsRuntimeAccess="all" />
       </uap:ApplicationContentUriRules>
     </Application>
   </Applications>
