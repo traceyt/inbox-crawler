@@ -50,18 +50,19 @@
     }
     function loginOffice() {
         var authzInProgress = false;
-        // var officeURL = 'https://login.microsoftonline.com/trewin.onmicrosoft.com/oauth2/authorize?client_id=';
-        var windownLoginURL = 'https://login.microsoftonline.com/448cfd31-021b-4a3c-beb9-26d8ba169252/oauth2/v2.0/authorize?client_id=';
+        // var officeURL = 'https://login.microsoftonline.com/trewin.onmicrosoft.com/oauth2/authorize?response_type=code&client_id=';
+        //var windowsLoginURL = 'https://login.microsoftonline.com/448cfd31-021b-4a3c-beb9-26d8ba169252/oauth2/v2.0/authorize?response_type=code&client_id=';
+        var windowsLoginURL = "https://login.windows.net/Common/oauth2/authorize?response_type=code&client_id=";
         var clientID = 'fd79b0e0-38b3-42e7-97fd-2f42d47beb6f';
         var callbackURL = 'http://localhost:3030/oauth2Callback';
-        //var callbackURL = 'ms-app://S-1-15-2-362237037-3722746685-439561638-2597901564-3613092599-1873846187-518014421';
-        var scope = 'https://outlook.office.com/mail.read';
+        // var callbackURL = 'ms-app://S-1-15-2-362237037-3722746685-439561638-2597901564-3613092599-1873846187-518014421';
+        // var scope = 'https://outlook.office.com/Mail.Read';
         // var resource = "00000002-0000-0000-c000-000000000000";
-        // var resource = "https://outlook.office.com";
+        var resource = "https://outlook.office365.com";
         var o = GetNonce();
-        windownLoginURL += clientID + "&redirect_uri=" + callbackURL + "&response_type=code&state=" + o + "&scope=" + scope;
+        windowsLoginURL += clientID + "&redirect_uri=" + callbackURL + "&state=" + o + "&resource=" + resource;
 
-        var startURI = new Windows.Foundation.Uri(windownLoginURL);
+        var startURI = new Windows.Foundation.Uri(windowsLoginURL);
         var endURI = new Windows.Foundation.Uri(callbackURL);
 
         authzInProgress = true;
@@ -71,43 +72,102 @@
             Windows.Security.Authentication.Web.WebAuthenticationOptions.none, startURI, endURI)
             .done(function (result) {
                 var response = result.responseData;
-                getToken(result.responseData);
+                
                 if (result.responseStatus === Windows.Security.Authentication.Web.WebAuthenticationStatus.errorHttp) {
                     WinJS.log("Error returned: " + result.responseErrorDetail, "Web Authentication SDK Sample", "error");
                 }
-                authzInProgress = false;
+                else {
+                    // get the code
+                    var code = getAuthToken(result.responseData);
+                    // now get the token
+                    if (code) {
+                        var startURL = "https://login.windows.net/common/oauth2/token";
+                        var clientSecret = "XWCSiBBatZDmC3H05TZe8q7CuQ7CDakF";
+                        var formString = "POST&";
+                        var formData = "grant_type=authorization_code&code=" + encodeURIComponent(code) + "&redirect_uri=" + encodeURI(callbackURL) + "&client_id=" + encodeURIComponent(clientID); // + "&client_secret=" + encodeURIComponent(clientSecret);
+
+                        try {
+                            var request = new XMLHttpRequest();
+                            request.open("POST", startURL, false);
+                            //request.setRequestHeader("Authorization", formData);
+                            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            request.send(formData);
+                            var requestData = JSON.parse(request.responseText);
+                            var access_token = requestData.access_token;
+                            if (access_token) {
+                                var request = new XMLHttpRequest();
+                                request.open("GET", " https://outlook.office365.com/api/v1.0/me/folders/inbox/messages?$top=10", false);
+                                request.setRequestHeader("User-Agent", "Clean-Me-Up-App/1.0");
+                                request.setRequestHeader("Authorization", "Bearer " + access_token);
+                                request.send(null);
+                                var requestData = JSON.parse(request.responseText);
+                                var emails = requestData.value;
+                            }
+                            
+                        } catch (err) {
+                            WinJS.log("Error sending request: " + err, "Web Authentication SDK Sample", "error");
+                        }
+                    }
+                }
             }, function (err) {
                 console.log(err);
                 authzInProgress = false;
             });
     }
 
-    function getToken(webAuthResultResponseData) {
+    function sendPostRequest(url, authzheader) {
+        try {
+            var request = new XMLHttpRequest();
+            request.open("POST", url, false);
+            request.setRequestHeader("Authorization", authzheader);
+            request.send(null);
+            return request.responseText;
+        } catch (err) {
+            WinJS.log("Error sending request: " + err, "Web Authentication SDK Sample", "error");
+        }
+    }
+
+    function getAuthToken(webAuthResultResponseData) {
+
+        var responseData = webAuthResultResponseData.substring(webAuthResultResponseData.indexOf("code"));
+        var keyValPairs = responseData.split("&");
+        var code = null;
+        var state = null;
+        for (var i = 0; i < keyValPairs.length; i++) {
+            var splits = keyValPairs[i].split("=");
+            switch (splits[0]) {
+                case "code":
+                    code = splits[1];
+                    break;
+                case "expires_in":
+                    state = splits[1];
+                    break;
+            }
+        }
+        // should really check state here to make sure that nothing was messed with
+        return code;      
+    }
+
+    function getAccessToken(webAuthResultResponseData) {
 
         var responseData = webAuthResultResponseData.substring(webAuthResultResponseData.indexOf("access_token"));
         var keyValPairs = responseData.split("&");
-        var access_token;
-        var expires_in;
+        var access_token = null;
+        var expires_in = null;
         for (var i = 0; i < keyValPairs.length; i++) {
             var splits = keyValPairs[i].split("=");
             switch (splits[0]) {
                 case "access_token":
-                    access_token = splits[1]; //You can store access token locally for further use. See "Account Management" scenario for usage.
+                    access_token = splits[1];
                     break;
                 case "expires_in":
                     expires_in = splits[1];
                     break;
             }
         }
-
-        var client = new XMLHttpRequest();
-        // client.open("POST", "https://login.microsoftonline.com/448cfd31-021b-4a3c-beb9-26d8ba169252/oauth2/token?client_id" + access_token, false);
-        client.open("GET", "https://outlook.office.com/api/v1.0/me/folders/inbox/messages?access_token=" + access_token, false);
-        client.send();
-        var userInfo = JSON.parse(client.responseText);
-        console.log(userInfo);
+        // should really check state here to make sure that nothing was messed with
+        return access_token;
     }
-
     function launchWebAuth() {
  //  redirectUri: 'ms-app://S-1-15-2-362237037-3722746685-439561638-2597901564-3613092599-1873846187-518014421'
 
