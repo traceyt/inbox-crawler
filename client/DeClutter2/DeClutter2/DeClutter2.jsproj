@@ -328,8 +328,14 @@
     <Content Include="images\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="images\StoreLogo.png" />
     <Content Include="images\Wide310x150Logo.scale-200.png" />
+    <TypeScriptCompile Include="js\typings\bluebird\bluebird.d.ts" />
+    <TypeScriptCompile Include="js\typings\es6-promise\es6-promise.d.ts" />
+    <TypeScriptCompile Include="js\typings\form-data\form-data.d.ts" />
+    <TypeScriptCompile Include="js\typings\request-promise\request-promise.d.ts" />
+    <TypeScriptCompile Include="js\typings\request\request.d.ts" />
+    <TypeScriptCompile Include="src\Office365_Adal.tsx" />
     <TypeScriptCompile Include="src\CommentBox.tsx" />
-    <TypeScriptCompile Include="src\Office365.tsx" />
+    <TypeScriptCompile Include="src\Office365_Web.tsx" />
     <TypeScriptCompile Include="src\EmailList.tsx" />
     <None Include="postbuildalways.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -419,12 +425,13 @@
     <Service Include="{4a0dddb5-7a95-4fbf-97cc-616d07737a77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\DeClutterLibrary\DeClutterLibrary.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="bower_components\Materialize\tests\pages\" />
     <Folder Include="bower_components\Materialize\test\html\" />
     <Folder Include="node_modules\" />
+    <Folder Include="Scripts\typings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\DeClutterLibrary\DeClutterLibrary.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />

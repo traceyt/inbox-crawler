@@ -36,7 +36,8 @@
     var React = require('react');
     var ReactDOM = require('react-dom');
     var $ = require('jquery');
-    var office365 = require('./Office365');
+    var office365_Web = require('./Office365_Web');
+    var office365_Adal = require('./Office365_Adal');
     var EmailList = require('./EmailList');
 
     $(document).ready(function () {
@@ -50,10 +51,10 @@
             }
         })
 
-        document.getElementById('LoginAdal').addEventListener('click', office365.launchWebAuth, false);
-        document.getElementById('LoginDeclutterLibrary').addEventListener('click', office365.getEmailReader, false);
-        document.getElementById('LoginWebBroker').addEventListener('click', office365.loginOffice, false);
-        document.getElementById('GetEmail').addEventListener('click', office365.getEmail, false);
+        document.getElementById('LoginAdal').addEventListener('click', office365_Adal.launchWebAuth, false);
+        document.getElementById('LoginDeclutterLibrary').addEventListener('click', office365_Web.getEmailReader, false);
+        document.getElementById('LoginWebBroker').addEventListener('click', office365_Web.loginOffice, false);
+        document.getElementById('GetEmail').addEventListener('click', office365_Web.getEmail, false);
                 
         ReactDOM.render(<CleanMeUpTitle />, document.getElementById('content'));
     });
