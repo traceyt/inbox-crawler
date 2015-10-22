@@ -41,6 +41,9 @@ class Office365_Adal {
         };
 
         var authContext = new Adal.inject(config);
+        // always logout for now
+        authContext.logOut();
+
         Office365_Adal.getUser(authContext).then(function (token) {
             console.log(token);
             authContext.acquireToken(config.resource, function (error, token) {
